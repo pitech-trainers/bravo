@@ -1,13 +1,25 @@
+*.swp
+*.swo
+*~
+config/config.php
+/nbproject
+
 # Bootstrap
 app/bootstrap*
 
 # Symfony directories
 vendor/*
+bin/*
 */logs/*
 */cache/*
 web/uploads/*
 web/bundles/*
 
+# Composer files
+composer.phar
+composer.lock
+
 # Configuration files
 app/config/parameters.ini
 app/config/parameters.yml
+/nbproject/private/
