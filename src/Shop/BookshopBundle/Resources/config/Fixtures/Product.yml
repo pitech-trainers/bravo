@@ -1,0 +1,17 @@
+## YAML Template.
+---
+
+Shop\BookshopBundle\Entity\Product:
+    p{1..10}:
+      title: <title()>
+#      category: 1
+      price: <price()>
+#      author: 102
+      isbn: <ISBN()>
+      appereance_year: <apperance_year()>
+      description: <description()>
+      short_description: <sdescription()>
+      stock: <stock()>
+      active: <active()>
+      image: <image()>   
+        
