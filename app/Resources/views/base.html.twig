@@ -15,7 +15,7 @@
         {% block javascripts %}
         <script src = "{{ asset('bundles/shopbookshop/js/jquery-1.10.2.min.js') }}"></script>
         <script src = "{{ asset('bundles/shopbookshop/js/jquery.validate.min.js') }}"></script>
-        <script src ="{{ asset('bundles/shopbookshop/js/functions.js') }}"></script>
+        <script src = "{{ asset('bundles/shopbookshop/js/functions.js') }}"></script>
         {% endblock %}
 
     </head>
@@ -24,85 +24,61 @@
 
         <div class="wrapper">
             <div class="page">
+                   {% block header %}
+                        <div class="header-container">             
+                             <div class="header">       
+                                 <div class="quick-access">
 
-                <div class="header-container">             
-                    <div class="header">       
-                        <div class="quick-access">
+                                     {% block search %}
+                                         <form id="search_mini_form" action="" method="get">
+                                             <div class="form-search">
+                                                 <label for="search">Search:</label>
+                                                 <input id="search" onkeyup="showResult(this.value)" type="text" name="search" class="input-text" maxlength="128" />
+                                                 <button type="submit" title="Search" class="button"><span><span>Search</span></span></button>
+                                                 <div id="livesearch"></div>
+                                             </div>
+                                         </form>
+                                     {% endblock %}
 
-                            {% block search %}
-                            <form id="search_mini_form" action="" method="get">
-                                <div class="form-search">
-                                    <label for="search">Search:</label>
-                                    <input id="search" onkeyup="showResult(this.value)" type="text" name="search" class="input-text" maxlength="128" />
-                                    <button type="submit" title="Search" class="button"><span><span>Search</span></span></button>
-                                    <div id="livesearch"></div>
-                                </div>
-                            </form>
-                            {% endblock %}
+                                     {% block headermenu %}
+                                         <p class="welcome-msg">{% block welcomeMessage %}Welcome!{% endblock %}</p>
+                                         {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuGuest') }}    
+                                     {% endblock %}
 
-                            {% block headermenu %}
-
-                            <p class="welcome-msg">Welcome  !</p>
-
-                            <ul class="links">
-                        {#       <li class="first" ><a href="" title="My Account" >My Account</a></li>
-                                <li class="first" ><a href="" title="Login" >Login</a></li>
-                                <li ><a href="" title="My Cart" class="top-link-cart">My Cart</a></li>
-                                <li ><a href="" title="Checkout" class="top-link-checkout">Checkout</a></li>
-
-                                <li class="last" ><a href="" title="" class="top-link-checkout">Logout</a></li> #}
-                                    {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuGuest') }}
-                            </ul>
-                            {% endblock %}
-
+                                 </div>
+                             </div>
                         </div>
-                    </div>
-                </div>
-
+                   {% endblock %}
+                    
                    {% block menu %}
-                <div class="nav-container">
-
-                    <ul id="nav">
-                        <li class="level0 nav-1 level-top first">
-
-                            <a href="" ><span></span></a>
-
-
-                            <a href="" ><span></span></a>
-
-                            <a href="" class="level-top" ><span></span></a>
-
-                        </li>
-                    </ul>
-                </div>
+                        <div class="nav-container">
+                            {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuCategories') }}
+                        </div>
                    {% endblock %}
 
-                    {% block container %}
+                   {% block container %}
 
-
-                    {% endblock %}
-
-
+                   {% endblock %}
 
                    {% block footer %} 
-                <div class = "footer-container">
-                    <div class = "footer">
-                        <ul>
-                            <li><a href = "#">About Us</a></li>
-                            <li><a href = "#">Customer Service</a></li>
-                            <li class = "last privacy"><a href = "#">Privacy Policy</a></li>
-                        </ul>
+                        <div class = "footer-container">
+                            <div class = "footer">
+                                <ul>
+                                    <li><a href = "#">About Us</a></li>
+                                    <li><a href = "#">Customer Service</a></li>
+                                    <li class = "last privacy"><a href = "#">Privacy Policy</a></li>
+                                </ul>
 
-                        <ul class = "links">
-                            <li class = "first" ><a href = "#" title = "Site Map" >Site Map</a></li>
-                            <li ><a href = "#" title = "Search Terms" >Search Terms</a></li>
-                            <li ><a href = "#" title = "Orders and Returns" >Orders and Returns</a></li>
-                            <li class = " last" ><a href = "#" title = "Contact Us" >Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
+                                <ul class = "links">
+                                    <li class = "first" ><a href = "#" title = "Site Map" >Site Map</a></li>
+                                    <li ><a href = "#" title = "Search Terms" >Search Terms</a></li>
+                                    <li ><a href = "#" title = "Orders and Returns" >Orders and Returns</a></li>
+                                    <li class = " last" ><a href = "#" title = "Contact Us" >Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     {% endblock %}
+                </div>
             </div>
-        </div>
-    </body>
-</html>
+        </body>
+    </html>
