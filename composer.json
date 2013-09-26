@@ -22,7 +22,8 @@
         "knplabs/knp-menu-bundle": "2.0.*@dev",
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "doctrine/data-fixtures" : "dev-master"
+        "doctrine/data-fixtures" : "dev-master",
+        "hautelook/alice-bundle" : "0.1.*"
     },
     "scripts": {
         "post-install-cmd": [
