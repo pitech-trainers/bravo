@@ -23,6 +23,7 @@
         "doctrine/data-fixtures": "dev-master",
 	"doctrine/doctrine-fixtures-bundle": "2.2.*",
 	"hautelook/alice-bundle": "0.1.*",
+        "symfony/finder": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0"
     },
     "scripts": {

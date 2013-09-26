@@ -9,8 +9,6 @@ use Nelmio\Alice\Fixtures;
 use Symfony\Component\Finder\Finder;
 
 class ProductLoader implements FixtureInterface {
-    
-    protected static $path = "/home/dcoman/Sites/bravo/src/Shop/BookshopBundle/Resources/config/Fixtures/Product.yml";
 
     public function load(ObjectManager $manager) {
 
@@ -20,7 +18,14 @@ class ProductLoader implements FixtureInterface {
         $p = new \Shop\BookshopBundle\Faker\Provider\ProductProvider($faker);
         $faker->addProvider($p);
 
-        Fixtures::load(static::$path, $manager, array('providers' => array($p)));
+        $finder = new Finder();
+        $finder->files()->name('Product.yml')->in('src/Shop/BookshopBundle/Resources');
+
+        foreach ($finder as $file) {
+            $path = $file->getRealpath();
+        };
+
+        Fixtures::load($path, $manager, array('providers' => array($p)));
     }
 
 }
