@@ -2,4 +2,38 @@
 
 {% block content %}
 
+<h3>Latest Products</h3>
+<table cellspacing="0" border="0">
+    <tbody>
+        {% for i in range(low=0, high=latestProd|length-1, step=2) %}
+            
+            <tr class="{{ cycle(['even','odd'], loop.index0) }}">
+                <td>
+                    <a href="">
+                        <img width="95" alt="" src="{{ asset('bundles/shopbookshop/image/'~latestProd[i].image) }}" class="product-img">
+                    </a>
+                    <div class="product-description">
+                        <p><a href="">{{ latestProd[i].title }}</a></p>
+                        <p>See all <a href=""></a></p>
+                    </div>
+                </td>
+
+                <td>
+                    <a href="">
+                        <img width="95" alt="" src="{{ asset('bundles/shopbookshop/image/'~latestProd[i+1].image) }}" class="product-img">
+                    </a>
+                    <div class="product-description">
+                        <p><a href="">{{ latestProd[i+1].title }}</a></p>
+
+                        <p>See all <a href=""></a></p>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            There are no products to display
+        {% endfor %}
+        </tbody>
+    </table>
+
+
 {% endblock %}

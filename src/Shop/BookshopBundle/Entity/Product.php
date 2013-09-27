@@ -1,13 +1,11 @@
 <?php
 
-
-
 namespace Shop\BookshopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Shop\BookshopBundle\Entity\Repository\ProductRepository")
  * @ORM\Table(name="product")
  */
 class Product
@@ -37,7 +35,11 @@ class Product
     protected $price;
     
     
-    protected $author;
+     /**
+     * @ORM\ManyToOne(targetEntity="Author", inversedBy="product")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     */
+     protected $author;
     
     
      /**
@@ -73,12 +75,17 @@ class Product
     protected $stock;
     
      /**
-     *
+     * 
      * @ORM\Column(type="integer") 
      */
     protected $active;
     
     
+    
+    /**
+     *
+     * @ORM\Column(type="string") 
+     */
     protected $image;    
 
     /**
@@ -252,13 +259,39 @@ class Product
         return $this->stock;
     }
 
+   
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Product
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
+
     /**
      * Set active
      *
-     * @param \tinyint $active
+     * @param integer $active
      * @return Product
      */
-    public function setActive(\tinyint $active)
+    public function setActive($active)
     {
         $this->active = $active;
     
@@ -268,10 +301,34 @@ class Product
     /**
      * Get active
      *
-     * @return \tinyint 
+     * @return integer 
      */
     public function getActive()
     {
         return $this->active;
+    }
+ 
+
+    /**
+     * Set author
+     *
+     * @param \Shop\BookshopBundle\Entity\Author $author
+     * @return Product
+     */
+    public function setAuthor(\Shop\BookshopBundle\Entity\Author $author = null)
+    {
+        $this->author = $author;
+    
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \Shop\BookshopBundle\Entity\Author 
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }
