@@ -32,7 +32,7 @@
                                      {% block search %}
                                          <form id="search_mini_form" action="" method="get">
                                              <div class="form-search">
-                                                 <label for="search">Search:</label>
+                                                 <label for="search">{{'Search'|trans}}:</label>
                                                  <input id="search" onkeyup="showResult(this.value)" type="text" name="search" class="input-text" maxlength="128" />
                                                  <button type="submit" title="Search" class="button"><span><span>Search</span></span></button>
                                                  <div id="livesearch"></div>
@@ -41,7 +41,7 @@
                                      {% endblock %}
 
                                      {% block headermenu %}
-                                         <p class="welcome-msg">{% block welcomeMessage %}Welcome!{% endblock %}</p>
+                                     <p class="welcome-msg">{% block welcomeMessage %}{{'Welcome'|trans}}!{% endblock %}</p>
                                          {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuGuest') }}    
                                      {% endblock %}
 
@@ -64,16 +64,16 @@
                         <div class = "footer-container">
                             <div class = "footer">
                                 <ul>
-                                    <li><a href = "#">About Us</a></li>
-                                    <li><a href = "#">Customer Service</a></li>
-                                    <li class = "last privacy"><a href = "#">Privacy Policy</a></li>
+                                    <li><a href = "#">{{'About Us'|trans}}</a></li>
+                                    <li><a href = "#">{{'Customer Service'|trans}}</a></li>
+                                    <li class = "last privacy"><a href = "#">{{'Privacy Policy'|trans}}</a></li>
                                 </ul>
 
                                 <ul class = "links">
-                                    <li class = "first" ><a href = "#" title = "Site Map" >Site Map</a></li>
-                                    <li ><a href = "#" title = "Search Terms" >Search Terms</a></li>
-                                    <li ><a href = "#" title = "Orders and Returns" >Orders and Returns</a></li>
-                                    <li class = " last" ><a href = "#" title = "Contact Us" >Contact Us</a></li>
+                                    <li class = "first" ><a href = "#" title = "Site Map" >{{'Site Map'|trans}}</a></li>
+                                    <li ><a href = "#" title = "Search Terms" >{{'Search Terms'|trans}}</a></li>
+                                    <li ><a href = "#" title = "Orders and Returns" >{{'Orders and Returns'|trans}}</a></li>
+                                    <li class = " last" ><a href = "#" title = "Contact Us" >{{'Contact Us'|trans}}</a></li>
                                 </ul>
                             </div>
                         </div>

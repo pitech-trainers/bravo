@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h3>Latest Products</h3>
+<h3>{{ 'Latest products'|trans}}</h3>
 <table cellspacing="0" border="0">
     <tbody>
         {% for i in range(low=0, high=latestProd|length-1, step=2) %}
@@ -14,7 +14,7 @@
                     </a>
                     <div class="product-description">
                         <p><a href="">{{ latestProd[i].title }}</a></p>
-                        <p>See all <a href="">{{ latestProd[i].category.label }}</a></p>
+                        <p>{{'See all'|trans}} <a href="">{{ latestProd[i].category.label|trans}}</a></p>
                     </div>
                 </td>
 
@@ -25,7 +25,7 @@
                     <div class="product-description">
                         <p><a href="">{{ latestProd[i+1].title }}</a></p>
 
-                        <p>See all <a href="">{{ latestProd[i+1].category.label }}</a></p>
+                        <p>{{'See all'|trans}} <a href="">{{ latestProd[i+1].category.label|trans}}</a></p>
                     </div>
                 </td>
             </tr>
