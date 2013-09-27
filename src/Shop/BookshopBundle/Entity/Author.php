@@ -24,7 +24,7 @@ class Author {
 
     
    /**
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="authors")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="author")
      */
     protected $product;
 
