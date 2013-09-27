@@ -8,9 +8,11 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Nelmio\Alice\Fixtures;
 use Symfony\Component\Finder\Finder;
 
-class ProductLoader implements FixtureInterface {
+class ProductLoader implements FixtureInterface
+{
 
-    public function load(ObjectManager $manager) {
+    public function load(ObjectManager $manager)
+    {
 
         $loader = new \Nelmio\Alice\Loader\Yaml();
 

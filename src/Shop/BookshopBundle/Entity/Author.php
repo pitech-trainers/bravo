@@ -8,7 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="authors")
  */
-class Author {
+class Author
+{
 
     /**
      * @ORM\Id
@@ -16,18 +17,16 @@ class Author {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
-     /**
+
+    /**
      * @ORM\Column(type="string")
      */
     protected $author_name;
 
-    
-   /**
+    /**
      * @ORM\OneToMany(targetEntity="Product", mappedBy="author")
      */
     protected $product;
-
 
     /**
      * Get id
@@ -48,7 +47,7 @@ class Author {
     public function setAuthorName($authorName)
     {
         $this->author_name = $authorName;
-    
+
         return $this;
     }
 
@@ -69,7 +68,7 @@ class Author {
     {
         $this->product = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add product
      *
@@ -79,7 +78,7 @@ class Author {
     public function addProduct(\Shop\BookshopBundle\Entity\Product $product)
     {
         $this->product[] = $product;
-    
+
         return $this;
     }
 
@@ -102,4 +101,5 @@ class Author {
     {
         return $this->product;
     }
+
 }

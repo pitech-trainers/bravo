@@ -9,9 +9,11 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Shop\BookshopBundle\Entity\Categories;
 use Symfony\Component\Finder\Finder;
 
-class CategoriesFixtures implements FixtureInterface {
+class CategoriesFixtures implements FixtureInterface
+{
 
-    public function load(ObjectManager $manager) {
+    public function load(ObjectManager $manager)
+    {
 
         $finder = new Finder();
         $finder->files()->name('categories.yml')->in('src/Shop/BookshopBundle/Resources');

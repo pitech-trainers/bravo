@@ -2,7 +2,8 @@
 
 namespace Shop\BookshopBundle\Faker\Provider;
 
-class ProductProvider extends \Faker\Provider\Base {
+class ProductProvider extends \Faker\Provider\Base
+{
 
     protected static $titles = array("Mica metoda de pian", "Album decorativ floral", "COMORILE MUZEELOR RUSE", "Por una cabeza. Tango.", "Practica bazelor de date",
         "Salate de sarbatoare", "Jurnalul unui Jurnal", "Bonifacia", "PROFESORUL", "Mama si copilul. Editia a VI-a", "Fundamentele auditului",
@@ -13,40 +14,49 @@ class ProductProvider extends \Faker\Provider\Base {
     protected static $image = array("mica-metoda-pian.jpg", "album-decorativ-floral.jpg", "jurnalul-unui-jurnal.jpg", "taisul-sabiei.jpg", "dragostea-vremea-holerei.jpg",
         "casa-profesorului.jpg", "practica-bazelor-date.jpg");
 
-    public function title() {
+    public function title()
+    {
 
         return static::randomElement(static::$titles);
     }
 
-    public function ISBN() {
+    public function ISBN()
+    {
         return $this->generator->randomNumber(9);
     }
 
-    public function price() {
-        return rand(1,50);
+    public function price()
+    {
+        return rand(1, 50);
     }
-   
-    public function apperance_year() {
+
+    public function apperance_year()
+    {
         return static::randomElement(static::$years);
     }
 
-    public function description() {
+    public function description()
+    {
         return static::randomElement(static::$description);
     }
 
-    public function sdescription() {
+    public function sdescription()
+    {
         return static::randomElement(static::$sdescription);
     }
 
-    public function stock() {
+    public function stock()
+    {
         return $this->generator->randomNumber(2);
     }
 
-    public function active() {
+    public function active()
+    {
         return rand(0, 1);
     }
 
-    public function image() {
+    public function image()
+    {
         return static::randomElement(static::$image);
     }
 

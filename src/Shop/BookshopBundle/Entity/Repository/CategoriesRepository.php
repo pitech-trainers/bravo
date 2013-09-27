@@ -12,15 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoriesRepository extends EntityRepository
 {
+
     public function getCategories($limit = null)
     {
         $qb = $this->createQueryBuilder('c')
-                   ->select('c');
+                ->select('c');
 
         if (false === is_null($limit))
             $qb->setMaxResults($limit);
 
         return $qb->getQuery()
-                  ->getResult();
+                        ->getResult();
     }
+
 }

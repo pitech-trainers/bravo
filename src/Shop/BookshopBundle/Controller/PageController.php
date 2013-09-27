@@ -8,9 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class PageController extends Controller {
+class PageController extends Controller
+{
 
-    public function indexAction() {
+    public function indexAction()
+    {
 
         $em = $this->getDoctrine()
                 ->getManager();

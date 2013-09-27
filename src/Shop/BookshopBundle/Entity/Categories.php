@@ -8,7 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Shop\BookshopBundle\Entity\Repository\CategoriesRepository")
  * @ORM\Table(name="categories")
  */
-class Categories {
+class Categories
+{
 
     /**
      * @ORM\Id
@@ -32,7 +33,8 @@ class Categories {
      *
      * @return integer 
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -42,7 +44,8 @@ class Categories {
      * @param string $label
      * @return Categories
      */
-    public function setLabel($label) {
+    public function setLabel($label)
+    {
         $this->label = $label;
 
         return $this;
@@ -53,7 +56,8 @@ class Categories {
      *
      * @return string 
      */
-    public function getLabel() {
+    public function getLabel()
+    {
         return $this->label;
     }
 
@@ -64,7 +68,7 @@ class Categories {
     {
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add products
      *
@@ -74,7 +78,7 @@ class Categories {
     public function addProduct(\Shop\BookshopBundle\Entity\Product $products)
     {
         $this->products[] = $products;
-    
+
         return $this;
     }
 
@@ -97,4 +101,5 @@ class Categories {
     {
         return $this->products;
     }
+
 }

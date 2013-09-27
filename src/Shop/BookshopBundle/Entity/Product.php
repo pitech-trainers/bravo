@@ -10,87 +10,77 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
-    
-     /**
+
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
-    
-     /**
+
+    /**
      * @ORM\Column(type="string")
      */
     protected $title;
-    
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Categories", inversedBy="products")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $category;
-    
-    
+
     /**
      *
      * @ORM\Column(type="integer") 
      */
     protected $price;
-    
-    
-     /**
+
+    /**
      * @ORM\ManyToOne(targetEntity="Author", inversedBy="product")
      * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
      */
-     protected $author;
-    
-    
-     /**
+    protected $author;
+
+    /**
      *
      * @ORM\Column(type="integer", length=13) 
      *
      */
     protected $isbn;
-    
-     /**
+
+    /**
      *
      * @ORM\Column(type="integer") 
      */
     protected $appereance_year;
-    
-    
+
     /**
      * @ORM\Column(type="text")
      */
     protected $description;
-    
-     
+
     /**
      * @ORM\Column(type="string", length=100)
      */
     protected $short_description;
-    
-    
-     /**
+
+    /**
      *
      * @ORM\Column(type="integer") 
      */
     protected $stock;
-    
-     /**
+
+    /**
      * 
      * @ORM\Column(type="integer") 
      */
     protected $active;
-    
-    
-    
+
     /**
      *
      * @ORM\Column(type="string") 
      */
-    protected $image;    
+    protected $image;
 
     /**
      * Get id
@@ -111,7 +101,7 @@ class Product
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
@@ -134,7 +124,7 @@ class Product
     public function setPrice($price)
     {
         $this->price = $price;
-    
+
         return $this;
     }
 
@@ -157,7 +147,7 @@ class Product
     public function setIsbn($isbn)
     {
         $this->isbn = $isbn;
-    
+
         return $this;
     }
 
@@ -180,7 +170,7 @@ class Product
     public function setAppereanceYear($appereanceYear)
     {
         $this->appereance_year = $appereanceYear;
-    
+
         return $this;
     }
 
@@ -203,7 +193,7 @@ class Product
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
@@ -226,7 +216,7 @@ class Product
     public function setShortDescription($shortDescription)
     {
         $this->short_description = $shortDescription;
-    
+
         return $this;
     }
 
@@ -249,7 +239,7 @@ class Product
     public function setStock($stock)
     {
         $this->stock = $stock;
-    
+
         return $this;
     }
 
@@ -263,7 +253,6 @@ class Product
         return $this->stock;
     }
 
-   
     /**
      * Set image
      *
@@ -273,7 +262,7 @@ class Product
     public function setImage($image)
     {
         $this->image = $image;
-    
+
         return $this;
     }
 
@@ -287,8 +276,6 @@ class Product
         return $this->image;
     }
 
-
-
     /**
      * Set active
      *
@@ -298,7 +285,7 @@ class Product
     public function setActive($active)
     {
         $this->active = $active;
-    
+
         return $this;
     }
 
@@ -311,7 +298,6 @@ class Product
     {
         return $this->active;
     }
- 
 
     /**
      * Set author
@@ -322,7 +308,7 @@ class Product
     public function setAuthor(\Shop\BookshopBundle\Entity\Author $author = null)
     {
         $this->author = $author;
-    
+
         return $this;
     }
 
@@ -345,7 +331,7 @@ class Product
     public function setCategory(\Shop\BookshopBundle\Entity\Categories $category = null)
     {
         $this->category = $category;
-    
+
         return $this;
     }
 
@@ -358,4 +344,5 @@ class Product
     {
         return $this->category;
     }
+
 }
