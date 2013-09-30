@@ -1,6 +1,7 @@
 shop_bookshop_homepage:
     pattern:  /
     defaults: { _controller: ShopBookshopBundle:Page:index }
+
 shop_bookshop_category:
     pattern:  /category/
     defaults: { _controller: ShopBookshopBundle:Page:category }
@@ -18,4 +19,8 @@ shop_bookshop_remove:
     defaults: { _controller: ShopBookshopBundle:Cart:removeItem }
     requirements:
         _method: POST
-        id: \d+        
+        id: \d+
+shop_bookshop_product:
+    pattern: /product/{id}
+    defaults: { _controller: ShopBookshopBundle:Page:productPage }
+

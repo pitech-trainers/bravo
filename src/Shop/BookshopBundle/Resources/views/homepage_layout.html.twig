@@ -5,20 +5,26 @@
 <div class="main-container col3-layout">
     <div class="main">
         <div class="col-wrapper">
+
+            <div class="breadcrumbs">
+                {% block breadcrumbs %}
+                {% endblock %}
+            </div>
             <div class="col-main">
                 <div class="box best-selling">
                     {% block content %}
-
                     {% endblock %}
                  </div>
              </div>
-            {% block leftSidebar %}
-            {% endblock %}
         </div>
+               <div class="col-left sidebar">
+                      {% block lsidebar %}
+                      {% endblock %}
+               </div>
+     </div>
+
+</div>
         {% block rightSidebar %}
         {{ render(controller('ShopBookshopBundle:Cart:cartSidebar')) }}
         {% endblock %}
-    </div>
-</div>
-
 {% endblock %}
