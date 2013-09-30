@@ -7,19 +7,19 @@ use Nelmio\Alice\Fixtures;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Shop\BookshopBundle\Entity\Categories;
-use Symfony\Component\Finder\Finder;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
-class CategoriesFixtures implements FixtureInterface
+class CategoriesFixtures extends ContainerAware implements FixtureInterface
 {
 
+ 
     public function load(ObjectManager $manager)
     {
-
-        $finder = new Finder();
+        
+        $finder = $this->container->get("finder");
         $finder->files()->name('categories.yml')->in('src/Shop/BookshopBundle/Resources');
 
         foreach ($finder as $file) {
-            // Print the absolute path
             $path = $file->getRealpath();
         }
 

@@ -14,12 +14,12 @@ class ProductRepository extends EntityRepository
 {
 
     public function getLatestProducts($limit = null)
-    {
+    {        
         $qb = $this->createQueryBuilder('p')
                 ->select('p, c')
                 ->join('p.category', 'c')
                 ->addOrderBy('p.id', 'DESC');
-
+               
         if (false === is_null($limit))
             $qb->setMaxResults($limit);
 

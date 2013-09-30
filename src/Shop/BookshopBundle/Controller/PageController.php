@@ -13,13 +13,13 @@ class PageController extends Controller
 
     public function indexAction()
     {
-
+         
         $em = $this->getDoctrine()
                 ->getManager();
 
         $latestProd = $em->getRepository('ShopBookshopBundle:Product')
                 ->getLatestProducts(6);
-
+        
         return $this->render('ShopBookshopBundle:Homepage:index.html.twig', array(
                     'latestProd' => $latestProd));
     }

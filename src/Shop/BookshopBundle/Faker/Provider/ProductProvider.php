@@ -16,7 +16,6 @@ class ProductProvider extends \Faker\Provider\Base
 
     public function title()
     {
-
         return static::randomElement(static::$titles);
     }
 

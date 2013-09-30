@@ -1,0 +1,6 @@
+## YAML Template.
+---
+Shop\BookshopBundle\Entity\Author:
+    p{1..10}:
+      author_name: <firstName()> <lastName()>
+     
