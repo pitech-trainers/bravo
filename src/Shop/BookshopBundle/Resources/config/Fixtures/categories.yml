@@ -1,0 +1,24 @@
+Shop\BookshopBundle\Entity\Categories:
+    category1:
+        label: Arta
+    category2:
+        label: Beletristica
+    category3:
+        label: Dictionare
+    category4:
+        label: Medicina
+    category5:
+        label: Economie
+    category6:
+        label: Psihologie
+    category7:
+        label: Stiinta si Tehnica
+    category8:
+        label: Manuale Scolare
+    category9:
+        label: Limbi Straine
+    category10:
+        label: Istorie
+        
+        
+    
