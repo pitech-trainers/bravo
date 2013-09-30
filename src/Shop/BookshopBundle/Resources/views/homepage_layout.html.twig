@@ -1,11 +1,12 @@
 {% extends '::base.html.twig' %}
 
+
 {% block container %}
 
 <div class="main-container col3-layout">
     <div class="main">
         <div class="col-wrapper">
-
+            
             <div class="breadcrumbs">
                 {% block breadcrumbs %}
                 {% endblock %}
@@ -15,16 +16,27 @@
                     {% block content %}
                     {% endblock %}
                  </div>
-             </div>
-        </div>
+            </div>
                <div class="col-left sidebar">
                       {% block lsidebar %}
                       {% endblock %}
-               </div>
-        {% block rightSidebar %}
-        {{ render(controller('ShopBookshopBundle:Cart:cartSidebar')) }}
-        {% endblock %}
-     </div>
+               </div>           
+        </div>
 
+            {% block rsidebar %}
+            <div class="col-right sidebar">
+                <div class="block block-cart">
+                    <div class="block-title">
+                        <strong><span>My Cart</span></strong>
+                    </div>
+                    <div class="block-content">
+                        <p class="empty">You have no items in your shopping cart.</p>
+                    </div>
+                </div>
+
+            </div>
+            {% endblock %}
+    </div>
 </div>
+
 {% endblock %}

@@ -84,4 +84,26 @@ class ProductRepository extends EntityRepository
                         ->getResult();
     }
 
+    public function getRandomProd($category, $limit = null)
+    {
+
+        $qb = $this->createQueryBuilder('p')
+                ->select('p')
+                ->where('p.category = :category')
+                ->setParameter('category', $category);
+
+        $qb2 = $this->getEntityManager()->createQueryBuilder()->select('COUNT(p.id)')
+                                                              ->from('ShopBookshopBundle:Product', 'p')
+                                                               ->where('p.category = :category')
+                                                               ->setParameter('category', $category);
+        $number = $qb2->getQuery()->getSingleScalarResult();
+        
+        if (false === is_null($limit)){
+            $qb->setMaxResults($limit)->setFirstResult(rand(0, $number-$limit));
+        }
+        
+        return $qb->getQuery()
+                        ->getResult();
+    }
+
 }

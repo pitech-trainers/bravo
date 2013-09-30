@@ -51,7 +51,6 @@ class PageController extends Controller
         return $this->render('ShopBookshopBundle:Page:category.html.twig', array('products' => $pagination, 'categories' => $cat));
     }
 
-
     public function productPageAction($id)
     {
         $em = $this->getDoctrine()
@@ -66,6 +65,9 @@ class PageController extends Controller
     public function cartPageAction()
     {
       return $this->render('ShopBookshopBundle:Page:cart.html.twig');
+    }
+        
+        return $this->render('ShopBookshopBundle:Page:product.html.twig', array("product" => $product, "randProd" => $randProd));
     }
 
 }
