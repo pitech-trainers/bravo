@@ -26,5 +26,43 @@ class ProductRepository extends EntityRepository
         return $qb->getQuery()
                         ->getResult();
     }
+    
+    public function getProducts($orderBy, $direction)
+    {        
+        $qb = $this->createQueryBuilder('p')
+                ->select('p, c')
+                ->join('p.category', 'c')
+                ->addOrderBy('p.'.$orderBy, $direction);
+        
+        return $qb->getQuery()
+                  ->getResult();
+    }
+    
+    public function getProductsByCategory($orderBy, $direction, $cid, $stock, $price)
+    {        
+        
+        $qb = $this->createQueryBuilder('p')
+                ->select('p, c')
+                ->join('p.category', 'c')
+                ->where('c.id = :cid')
+                ->addOrderBy('p.'.$orderBy, $direction)
+                ->setParameter('cid', $cid);
+        
+        if ($stock=='1')
+            $qb->andWhere ('p.active= :active')->setParameter('active', $stock);
+        elseif ($stock == '0')
+            $qb->andWhere ('p.active= :active')->setParameter('active', $stock);
+        
+        if($price=='1')
+            $qb->andWhere ('p.price < 20 ');
+        if($price=='2') 
+            $qb->andWhere ('p.price >= 20 AND p.price < 40');
+        if($price=='3')
+            $qb->andWhere ('p.price > 40 ');
+                      
+        return $qb->getQuery()
+                  ->getResult();
+    }
+    
 
 }

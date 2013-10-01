@@ -1,0 +1,218 @@
+{% extends 'ShopBookshopBundle::layout.html.twig' %}
+
+{% block title %}Category{% endblock%}
+{% block container %}  
+<div class="main-container col3-layout">
+    <div class="main">
+        <div class="breadcrumbs">
+            <ul>
+                <li class="home">
+                    <a href="{{ path('shop_bookshop_homepage') }}" title="Go to Home Page">{{'Home'|trans}}</a>
+                    <span>/ </span>
+                </li>
+                <li class="category35">
+                    <strong>{{products.params.clabel}}</strong>
+                </li>
+            </ul>
+        </div>
+            {{ dump(products.isSorted('asc') ) }}
+        <div class="col-wrapper">
+            <div class="col-main">
+                <div class="page-title category-title">
+                    <h1>{{products.params.clabel}}</h1>
+                </div>
+
+                <div class="category-products">
+                    <div class="toolbar">
+                    {% if products.items %}
+                        <div class="pager">
+                            <p class="amount">
+                                <strong>{{ products.getTotalItemCount }} {{'Item(s)'|trans}}</strong>
+                            </p>
+                        
+                            <div class="pages">
+                                <strong>{{'Page'|trans}}: {{ knp_pagination_render(products) }}</strong>
+
+                            </div>
+                        </div>
+                            
+                        <div class="sorter">
+                            <div class="sort-by">
+                                <form method="get" >
+                                    <label>{{'Sort By'|trans}}</label>
+                                    <select name='sortBy'>
+                                        <option {% if products.isSorted('title') %} selected {% endif %}>{{ knp_pagination_sortable(products, 'title', 'title') }}</option>
+                                        <option {% if products.isSorted('price') %} selected {% endif %}>{{ knp_pagination_sortable(products, 'price', 'price') }}</option>
+                                    </select>
+                                    &nbsp;
+                                    <label>{{'Direction'|trans}}</label>
+                                    <select name='direction'>
+                                        <option {% if products.isSorted('asc') %} selected {% endif %}>{{ knp_pagination_sortable(products, 'asc', 'asc') }}</option>
+                                        <option {% if products.isSorted('desc') %} selected {% endif %}>{{ knp_pagination_sortable(products, 'desc', 'desc') }}</option>
+                                    </select>
+                                    <input type="submit" name="submit" value="Go!" />
+                                </form>
+                            </div>
+                        </div>
+                    {% else %}{{ 'There are no items in this category.'|trans }} 
+                    {% endif %}
+                    </div>
+
+                    <ul class="products-grid">
+                    {% for product in products %}    
+                        {% if loop.index%3==1 %}
+
+                            <li class="item first">
+                                <a href="product_detail.html" title="{{ product.title }}" class="product-image"><img src="{{ asset('bundles/shopbookshop/image/'~product.image) }}" width="135" height="135" alt="{{product.title}}" /></a>
+                                <h2 class="product-name"><a href="product_detail.html" title="{{product.title}}">{{product.title}}</a></h2>
+                                <div class="price-box">
+                                    <span class="regular-price" id="product-price-168">
+                                        <span class="price">{{product.price}} US$</span>
+                                    </span>
+                                </div>
+
+                                {% if product.active>0 %}
+                                <div class="actions">
+                                    <button type="button" title="Add to Cart" class="button btn-cart" >
+                                        <span><span>Add to Cart</span></span>
+                                    </button>
+                                </div>
+                                {% else %} <div class="actions" style='color:red'><span>Not available</span></div>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                        {% if loop.index%3==2 %}
+                            <li class="item">
+                                <a href="product_detail.html" title="{{ product.title }}" class="product-image"><img src="{{ asset('bundles/shopbookshop/image/'~product.image) }}" width="135" height="135" alt="{{product.title}}" /></a>
+                                <h2 class="product-name"><a href="product_detail.html" title="{{product.title}}">{{product.title}}</a></h2>
+                                <div class="price-box">
+                                    <span class="regular-price" id="product-price-168">
+                                        <span class="price">{{product.price}} US$</span>
+                                    </span>
+                                </div>
+
+                                {% if product.active>0 %}
+                                <div class="actions">
+                                    <button type="button" title="Add to Cart" class="button btn-cart" >
+                                        <span><span>Add to Cart</span></span>
+                                    </button>
+                                </div>
+                                {% else %} <div class="actions" style='color:red'><span>Not available</span></div>    
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                        {% if loop.index%3==0 %}
+                            <li class="item">
+                                <a href="product_detail.html" title="{{ product.title }}" class="product-image"><img src="{{ asset('bundles/shopbookshop/image/'~product.image) }}" width="135" height="135" alt="{{product.title}}" /></a>
+                                <h2 class="product-name"><a href="product_detail.html" title="{{product.title}}">{{product.title}}</a></h2>
+                                <div class="price-box">
+                                    <span class="regular-price" id="product-price-168">
+                                        <span class="price">{{product.price}} US$</span>
+                                    </span>
+                                </div>
+                                {% if product.active>0 %}
+                                <div class="actions">
+                                    <button type="button" title="Add to Cart" class="button btn-cart" >
+                                        <span><span>Add to Cart</span></span>
+                                    </button>
+                                </div>
+                                {% else %} <div class="actions" style='color:red'><span>Not available</span></div>    
+                                {% endif %}    
+                            </li>
+                        {% endif %}
+                    {% endfor %}    
+                    </ul>
+
+                        <div class="toolbar-bottom">
+                            <div class="toolbar">
+                            {% if products.items %}
+                                <div class="pager">
+                                    <p class="amount">
+                                        <strong>{{ products|length }} {{'Item(s)'|trans}}</strong>
+                                    </p>
+
+                                    <div class="pages">
+                                        <strong>{{'Page'|trans}}: {{ knp_pagination_render(products) }}</strong>
+                                    </div>
+                                </div>
+
+                                <div class="sorter">
+                                    <div class="sort-by">
+                                        <form method="get" >
+                                            <label>{{'Sort By'|trans}}</label>
+                                            <select name='sortBy'>
+                                                <option {% if products.isSorted('title') %} selected {% endif %}>{{ knp_pagination_sortable(products, 'title', 'title') }}</option>
+                                                <option {% if products.isSorted('price') %} selected {% endif %}>{{ knp_pagination_sortable(products, 'price', 'price') }}</option>
+                                            </select>
+                                            &nbsp;
+                                            <label>{{'Direction'|trans}}</label>
+                                            <select name='direction'>
+                                                <option {% if products.isSorted('asc') %}  selected {% endif %}>{{ knp_pagination_sortable(products, 'asc', 'asc') }}</option>
+                                                <option {% if products.isSorted('desc') %} selected {% endif %}>{{ knp_pagination_sortable(products, 'desc', 'desc') }}</option>
+                                            </select>
+                                            <input type="submit" name="submit" value="Go!" />
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            </div>
+                        </div>
+                </div>
+            </div>
+                <div class="col-left sidebar">
+                    <div class="block block-layered-nav">
+                        <div class="block-title">
+                            <strong><span>{{'Shop By'|trans}}</span></strong>
+                        </div>
+                        <div class="block-content">
+                            <div class="currently">
+                                <p class="block-subtitle">{{'Currently Shopping by'|trans}}: </p>
+                                <ol>
+                                    <li>
+                                        <span class="label">{{'Price'|trans}}:</span> <span class="value">0,00 US$ - 49,99 US$</span>
+                                        <a class="btn-remove" href="#" title="Remove This Item">{{'Remove This Item'|trans}}</a>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="actions"><a href="{{ path(app.request.attributes.get('_route'), {'cid':products.params.cid, 'clabel':products.params.clabel} ) }}">{{'Clear All'|trans}}</a></div>
+                            <p class="block-subtitle">{{'Shopping Options'|trans}}</p>
+                            <dl id="narrow-by-list">
+                                <dt>{{'Price'|trans}}</dt>
+                                <dd>
+                                    <ol>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'pr': '1', 'cid':products.params.cid, 'clabel':products.params.clabel}) ) }}"><span class="price">0,00 US$</span> - <span class="price">19,99 US$</span></a></li>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'pr': '2', 'cid':products.params.cid, 'clabel':products.params.clabel}) ) }}"><span class="price">20,00 US$</span> - <span class="price">39,99 US$</span></a></li>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'pr': '3', 'cid':products.params.cid, 'clabel':products.params.clabel}) ) }}"><span class="price">40,00 US$ </span>{{'and above'|trans}}</a></li>
+                                    </ol>
+                                </dd>
+                                <dt>{{'Stock'|trans}}</dt>
+                                <dd>
+                                    <ol>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'st': '1', 'cid':products.params.cid, 'clabel':products.params.clabel}) ) }}">{{'Available'|trans}}</a></li>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'st': '0', 'cid':products.params.cid, 'clabel':products.params.clabel}) ) }}">{{'Soon'|trans}}</a></li>
+                                    </ol>            
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+        </div>
+            
+            <div class="col-right sidebar">
+                <div class="block block-cart">
+                    <div class="block-title">
+                        <strong><span>My Cart</span></strong>
+                    </div>
+                    <div class="block-content">
+                        <p class="empty">You have no items in your shopping cart.</p>
+                    </div>
+                </div>
+            </div>    
+    </div>
+</div>
+{% endblock %}
