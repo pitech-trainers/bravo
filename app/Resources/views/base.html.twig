@@ -28,9 +28,8 @@
                         <div class="header-container">             
                              <div class="header">       
                                  <div class="quick-access">
-
                                      {% block search %}
-                                         <form id="search_mini_form" action="" method="get">
+                                         <form id="search_mini_form" action="{{ path('shop_bookshop_category', app.request.query.all)  }}" method="get">
                                              <div class="form-search">
                                                  <label for="search">{{'Search'|trans}}:</label>
                                                  <input id="search" onkeyup="showResult(this.value)" type="text" name="search" class="input-text" maxlength="128" />
@@ -39,7 +38,7 @@
                                              </div>
                                          </form>
                                      {% endblock %}
-
+                                     
                                      {% block headermenu %}
                                      <p class="welcome-msg">{% block welcomeMessage %}{{'Welcome'|trans}}!{% endblock %}</p>
                                          {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuGuest') }}    
@@ -49,7 +48,7 @@
                              </div>
                         </div>
                    {% endblock %}
-                    
+                                     
                    {% block menu %}
                         <div class="nav-container">
                             {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuCategories') }}

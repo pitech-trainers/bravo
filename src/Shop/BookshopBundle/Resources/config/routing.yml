@@ -2,7 +2,7 @@ shop_bookshop_homepage:
     pattern:  /
     defaults: { _controller: ShopBookshopBundle:Page:index }
 shop_bookshop_category:
-    pattern:  /category/cid={cid}&c={clabel}
+    pattern:  /category/
     defaults: { _controller: ShopBookshopBundle:Page:category }
     requirements:
         _method:  GET|POST

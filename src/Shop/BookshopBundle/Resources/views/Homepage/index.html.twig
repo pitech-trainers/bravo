@@ -14,7 +14,7 @@
                     </a>
                     <div class="product-description">
                         <p><a href="">{{ latestProd[i].title }}</a></p>
-                        <p>{{'See all'|trans}} <a href="">{{ latestProd[i].category.label|trans}}</a></p>
+                        <p>{{'See all'|trans}} <a href="{{ path('shop_bookshop_category', {'cid': latestProd[i].category.id, 'clabel':latestProd[i].category.label})  }}">{{ latestProd[i].category.label|trans}}</a></p>
                     </div>
                 </td>
 
@@ -25,7 +25,7 @@
                     <div class="product-description">
                         <p><a href="">{{ latestProd[i+1].title }}</a></p>
 
-                        <p>{{'See all'|trans}} <a href="">{{ latestProd[i+1].category.label|trans}}</a></p>
+                        <p>{{'See all'|trans}} <a href="{{ path('shop_bookshop_category', {'cid': latestProd[i+1].category.id, 'clabel':latestProd[i+1].category.label})  }}">{{ latestProd[i+1].category.label|trans}}</a></p>
                     </div>
                 </td>
             </tr>
@@ -34,6 +34,6 @@
         {% endfor %}
      </tbody>
 </table>
-
+{% block leftSidebar %}{% endblock %}
 
 {% endblock %}

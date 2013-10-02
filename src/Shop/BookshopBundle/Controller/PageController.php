@@ -7,13 +7,13 @@ namespace Shop\BookshopBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends Controller
 {
 
     public function indexAction()
     {
-
         $em = $this->getDoctrine()
                 ->getManager();
 
@@ -24,32 +24,38 @@ class PageController extends Controller
                     'latestProd' => $latestProd));
     }
 
-    public function categoryAction($cid)
+    public function categoryAction()
     {
+        $stock = null;    
+        $price = null;
+        $cid = 0;
+        $str='';
+        $sortBy = 'title';
+        $direction = 'asc';
+        
+        $request = Request::createFromGlobals();
+        
+        if($request->query->get('direction')!= null)
+            $direction = $request->query->get('direction');
+        
+        if($request->query->get('sortBy')!= null)
+            $sortBy = $request->query->get('sortBy');
+        
+        if($request->query->get('st')!= null)
+            $stock = $request->query->get('st');
+            
+        if($request->query->get('pr')!= null)
+            $price = $request->query->get('pr');
+        
+        if($request->query->get('cid')!= null)
+            $cid = $request->query->get('cid');
+        
+        if($request->query->get('search')!= null)
+            $str = $request->query->get('search');
         $em = $this->getDoctrine()
                 ->getManager();
-
-        if (isset($_GET['direction']))
-            $direction = $_GET['direction'];
-        else
-            $direction = 'asc';
-
-        if (isset($_GET['sortBy']))
-            $sortBy = $_GET['sortBy'];
-        else
-            $sortBy = 'title';
         
-        if (isset($_GET['st']))
-            $stock = $_GET['st'];
-        else 
-            $stock = null;
-        
-        if (isset($_GET['pr']))
-            $price = $_GET['pr'];
-        else
-            $price = null;
-        
-        $products = $em->getRepository('ShopBookshopBundle:Product')->getProductsByCategory($sortBy, $direction, $cid, $stock, $price);
+        $products = $em->getRepository('ShopBookshopBundle:Product')->getProducts($sortBy, $direction , $cid, $stock, $price, $str);
         
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -58,5 +64,5 @@ class PageController extends Controller
 
         return $this->render('ShopBookshopBundle:Page:category.html.twig', array('products' => $pagination));
     }
-
+    
 }

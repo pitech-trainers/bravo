@@ -1,8 +1,6 @@
 {% extends '::base.html.twig' %}
 
-
 {% block container %}
-
 
 <div class="main-container col3-layout">
     <div class="main">
@@ -14,14 +12,77 @@
                     {% endblock %}
                  </div>
              </div>
-                {% block lsidebar %}
-                <div class="col-left sidebar">  </div>
+                {% block leftSidebar %}
+                <div class="col-left sidebar">
+                    <div class="block block-layered-nav">
+                        <div class="block-title">
+                            <strong><span>{{'Shop By'|trans}}</span></strong>
+                        </div>
+                        <div class="block-content">
+                        
+                            
+                            <div class="currently">
+                                <p class="block-subtitle">{{'Currently Shopping by'|trans}}: </p>
+                                <ol>
+                                    {% if products.params.pr is defined %}
+                                    <li>
+                                        <span class="label">{{'Price'|trans}}:</span> <span class="value"> </span>
+                                        <a class="btn-remove" href="#" title="Remove This Item">{{'Remove This Item'|trans}}</a>
+                                    </li>
+                                    {% endif %}
+                                    {% if products.params.st is defined %}
+                                    <li>
+                                        <span class="label">{{'Stock'|trans}}:</span> <span class="value"> </span>
+                                        <a class="btn-remove" href="#" title="Remove This Item">{{'Remove This Item'|trans}}</a>
+                                    </li>
+                                    {% endif %}
+                                </ol>
+                            </div>
+                            
+                            
+                            {% if products.params.pr is defined or products.params.st is defined %}    
+                              
+                            <div class="actions">
+                                {% if products.params.cid is defined %}{% set cid=products.params.cid %}{% endif %} 
+                                {% if products.params.clabel is defined %}{% set clabel=products.params.clabel %}{% endif %} 
+                                <a href="{{ path('shop_bookshop_category', {'cid':cid, 'clabel':clabel}) }}">
+                                    {{'Clear All'|trans}}
+                                </a>
+                            </div>
+                            {% endif %}
+                            <p class="block-subtitle">{{'Shopping Options'|trans}}</p>
+                            <dl id="narrow-by-list">
+                                <dt>{{'Price'|trans}}</dt>
+                                <dd>
+                                    <ol>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'pr': '1'}) ) }}"><span class="price">0,00 US$</span> - <span class="price">19,99 US$</span></a></li>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'pr': '2'}) ) }}"><span class="price">20,00 US$</span> - <span class="price">39,99 US$</span></a></li>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'pr': '3'}) ) }}"><span class="price">40,00 US$ </span>{{'and above'|trans}}</a></li>
+                                    </ol>
+                                </dd>
+                                <dt>{{'Stock'|trans}}</dt>
+                                <dd>
+                                    <ol>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'st': '1'}) ) }}">{{'Available'|trans}}</a></li>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'st': '0'}) ) }}">{{'Soon'|trans}}</a></li>
+                                    </ol>            
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                
                 {% endblock %}
-         </div>
+        </div>
 
-            {% block rsidebar %}
+        {% block rsidebar %}
             
-            {% endblock %}
+        {% endblock %}
     </div>
 </div>
 
