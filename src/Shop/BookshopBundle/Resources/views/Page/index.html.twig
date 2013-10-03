@@ -1,7 +1,6 @@
-{% extends 'ShopBookshopBundle::layout.html.twig' %}
+{% extends 'ShopBookshopBundle::homepage_layout.html.twig' %}
 
 {% block content %}
-
 <h3>Latest Products</h3>
 <table cellspacing="0" border="0">
     <tbody>
@@ -9,21 +8,21 @@
             
             <tr class="{{ cycle(['even','odd'], loop.index0) }}">
                 <td>
-                    <a href="">
+                    <a href="{{ path('shop_bookshop_product', { 'id': latestProd[i].id } ) }}">
                         <img width="95" alt="" src="{{ asset('bundles/shopbookshop/image/'~latestProd[i].image) }}" class="product-img">
                     </a>
                     <div class="product-description">
-                        <p><a href="">{{ latestProd[i].title }}</a></p>
+                        <p><a href="{{ path('shop_bookshop_product', { 'id': latestProd[i].id } ) }}">{{ latestProd[i].title }}</a></p>
                         <p>See all <a href="">{{ latestProd[i].category.label }}</a></p>
                     </div>
                 </td>
 
                 <td>
-                    <a href="">
+                    <a href="{{ path('shop_bookshop_product', { 'id': latestProd[i+1].id } ) }}">
                         <img width="95" alt="" src="{{ asset('bundles/shopbookshop/image/'~latestProd[i+1].image) }}" class="product-img">
                     </a>
                     <div class="product-description">
-                        <p><a href="">{{ latestProd[i+1].title }}</a></p>
+                        <p><a href="{{ path('shop_bookshop_product', { 'id': latestProd[i+1].id } ) }}">{{ latestProd[i+1].title }}</a></p>
 
                         <p>See all <a href="">{{ latestProd[i+1].category.label }}</a></p>
                     </div>
@@ -34,6 +33,5 @@
         {% endfor %}
      </tbody>
 </table>
-
-
 {% endblock %}
+

@@ -13,15 +13,26 @@ class PageController extends Controller
 
     public function indexAction()
     {
-         
+
         $em = $this->getDoctrine()
                 ->getManager();
 
         $latestProd = $em->getRepository('ShopBookshopBundle:Product')
                 ->getLatestProducts(6);
-        
-        return $this->render('ShopBookshopBundle:Homepage:index.html.twig', array(
+
+        return $this->render('ShopBookshopBundle:Page:index.html.twig', array(
                     'latestProd' => $latestProd));
+    }
+
+    public function productPageAction($id)
+    {
+        $em = $this->getDoctrine()
+                ->getManager();
+
+        $product = $em->getRepository('ShopBookshopBundle:Product')->find($id);
+        $randProd = $em->getRepository('ShopBookshopBundle:Product')->getRandomProd($product->getCategory()->getId(), 4);
+        
+        return $this->render('ShopBookshopBundle:Page:product.html.twig', array("product" => $product, "randProd" => $randProd));
     }
 
 }
