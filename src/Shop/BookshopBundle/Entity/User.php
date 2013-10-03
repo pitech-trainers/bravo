@@ -60,12 +60,10 @@ class User extends BaseUser
         parent::__construct();
     }
 
-
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -81,14 +79,14 @@ class User extends BaseUser
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
-    
+
         return $this;
     }
 
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
@@ -104,14 +102,14 @@ class User extends BaseUser
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
-    
+
         return $this;
     }
 
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -127,14 +125,14 @@ class User extends BaseUser
     public function setPhone($phone)
     {
         $this->phone = $phone;
-    
+
         return $this;
     }
 
     /**
      * Get phone
      *
-     * @return integer 
+     * @return integer
      */
     public function getPhone()
     {
@@ -150,14 +148,14 @@ class User extends BaseUser
     public function setGender($gender)
     {
         $this->gender = $gender;
-    
+
         return $this;
     }
 
     /**
      * Get gender
      *
-     * @return integer 
+     * @return integer
      */
     public function getGender()
     {
@@ -173,14 +171,14 @@ class User extends BaseUser
     public function setBillingAddressId($billingAddressId)
     {
         $this->billing_address_id = $billingAddressId;
-    
+
         return $this;
     }
 
     /**
      * Get billing_address_id
      *
-     * @return integer 
+     * @return integer
      */
     public function getBillingAddressId()
     {
@@ -196,14 +194,14 @@ class User extends BaseUser
     public function setShippingAddressId($shippingAddressId)
     {
         $this->shipping_address_id = $shippingAddressId;
-    
+
         return $this;
     }
 
     /**
      * Get shipping_address_id
      *
-     * @return integer 
+     * @return integer
      */
     public function getShippingAddressId()
     {

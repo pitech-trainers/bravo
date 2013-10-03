@@ -19,14 +19,14 @@
         {% endblock %}
 
     </head>
-    
+
     <body>
 
         <div class="wrapper">
             <div class="page">
                    {% block header %}
-                        <div class="header-container">             
-                             <div class="header">       
+                        <div class="header-container">
+                             <div class="header">
                                  <div class="quick-access">
                                      {% block search %}
                                          <form id="search_mini_form" action="{{ path('shop_bookshop_category', app.request.query.all)  }}" method="get">
@@ -37,20 +37,27 @@
                                              </div>
                                              <div class="suggestionsBox" id="suggestionBox" style="visibility: hidden; margin-left: 45%;">
                                                  <div class="suggestionList" id="liveSearch"></div>
-                                             </div>    
+                                             </div>
                                          </form>
                                      {% endblock %}
-                                     
+
                                      {% block headermenu %}
                                      <p class="welcome-msg">{% block welcomeMessage %}{{'Welcome'|trans}}!{% endblock %}</p>
-                                         {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuGuest') }}    
+                                         {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuGuest') }}
+                                           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                               <p class="welcome-msg">Welcome {{ app.user.username }} !</p>
+                                               {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuUser') }}
+                                           {% else %}
+                                               <p class="welcome-msg">Welcome!</p>
+                                               {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuGuest') }}
+                                           {% endif %}
                                      {% endblock %}
 
                                  </div>
                              </div>
                         </div>
                    {% endblock %}
-                                     
+
                    {% block menu %}
                         <div class="nav-container">
                             {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuCategories') }}
@@ -61,7 +68,7 @@
 
                    {% endblock %}
 
-                   {% block footer %} 
+                   {% block footer %}
                         <div class = "footer-container">
                             <div class = "footer">
                                 <ul>
