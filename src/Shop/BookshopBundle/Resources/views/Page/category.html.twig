@@ -42,20 +42,17 @@
                                 <p class="amount">
                                     <strong>{{ products.getTotalItemCount }} {{'Item(s)'|trans}}</strong>
                                 </p>
-
                                 <div class="pages">
                                     <strong>{{'Page'|trans}}: {{ knp_pagination_render(products) }}</strong>
-
                                 </div>
                             </div>
-
                             <div class="sorter">
                                 <div class="sort-by">
                                     <label>{{'Sort By'|trans}}:</label>
                                             <button {% if products.isSorted('Title ') %} {% endif %}>{{ knp_pagination_sortable(products, 'Title ', 'title ') }}</button>
                                             <button {% if products.isSorted('Price ') %} {% endif %}>{{ knp_pagination_sortable(products, 'Price ', 'price ') }}</button>
                                     {% if products.params.direction is defined %}
-                                    <label>{{'Direction'|trans}}: {{products.params.direction}}endent</label>
+                                        <label>{{'Direction'|trans}}: {{products.params.direction}}endent</label>
                                     {% endif %}
                                 </div>
                             </div>    
@@ -131,19 +128,26 @@
 
                         <div class="toolbar-bottom">
                             <div class="toolbar">
-                            {% if products.items %}
-
-                                    <div class="pager">
+                                {% if products.items %}
+                                <div class="pager">
                                     <p class="amount">
-                                        <strong>{{ products|length }} {{'Item(s)'|trans}}</strong>
+                                        <strong>{{ products.getTotalItemCount }} {{'Item(s)'|trans}}</strong>
                                     </p>
-
                                     <div class="pages">
                                         <strong>{{'Page'|trans}}: {{ knp_pagination_render(products) }}</strong>
                                     </div>
                                 </div>
-                                    
-                            {% endif %}
+                                <div class="sorter">
+                                    <div class="sort-by">
+                                        <label>{{'Sort By'|trans}}:</label>
+                                                <button {% if products.isSorted('Title ') %} {% endif %}>{{ knp_pagination_sortable(products, 'Title ', 'title ') }}</button>
+                                                <button {% if products.isSorted('Price ') %} {% endif %}>{{ knp_pagination_sortable(products, 'Price ', 'price ') }}</button>
+                                        {% if products.params.direction is defined %}
+                                        <label>{{'Direction'|trans}}: {{products.params.direction}}endent</label>
+                                        {% endif %}
+                                    </div>
+                                </div>    
+                                {% endif %}
                             </div>
                         </div>
                 </div>

@@ -65,6 +65,41 @@
     background-color: #E0E0EB;
 }
 
+.suggestionsBox {
+            float: top;
+	    position: absolute;
+	    top:23px;
+            left: 165px;
+	    z-index: -1;
+            margin: 10px 0px 0px 0px;
+	    width: 330px;
+	    background-color: #DCD439;
+	    border-radius: 7px;
+	    border-radius: 7px;
+	    border: 2px solid #000;
+	    color: #FFFFFF;
+	}
+	
+	.suggestionList {
+            text-align: left;
+	    margin: 0px;
+	    padding: 0px;
+	    border: 2px solid #000;
+        }
+	
+	.suggestionList li {
+	    margin: 0px 0px 3px 0px;
+	    padding: 3px;
+	    color: red;
+	    cursor: pointer;
+	}
+	
+	.suggestionList li:hover {
+      	    border-radius: 3px;
+	    border-radius: 3px;
+	    background-color: #FFFFC2;
+	}
+
 body          { background:#496778 url(../images/bkg_body.gif) 50% 0 repeat-y; font:12px/1.55 Arial, Helvetica, sans-serif; color:#2f2f2f; text-align:center; }
 
 img           { border:0; vertical-align:top; }

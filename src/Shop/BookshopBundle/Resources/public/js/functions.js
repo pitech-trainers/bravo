@@ -28,6 +28,36 @@ function loadCart(id, qty)
     xmlhttp.send("id=" + id + "&qty=" + qty);
 }
 
+function showSearch(str)
+{
+    if (str.length < 1)
+    {
+        document.getElementById("liveSearch").innerHTML = "";
+        document.getElementById("liveSearch").style.border = "0px";
+        document.getElementById("suggestionBox").style.visibility = "hidden";
+        return;
+    }
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function()
+    {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+        {
+            document.getElementById("liveSearch").innerHTML = xmlhttp.responseText;
+            document.getElementById("suggestionBox").style.visibility = "visible";
+        }
+    }
+    xmlhttp.open("POST", "/Page/ajaxSearch", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("q=" + str);
+}
+
 function showResult(str)
 {
     if (str.length < 3)

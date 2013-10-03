@@ -19,7 +19,7 @@
         {% endblock %}
 
     </head>
-
+    
     <body>
 
         <div class="wrapper">
@@ -32,10 +32,12 @@
                                          <form id="search_mini_form" action="{{ path('shop_bookshop_category', app.request.query.all)  }}" method="get">
                                              <div class="form-search">
                                                  <label for="search">{{'Search'|trans}}:</label>
-                                                 <input id="search" onkeyup="showResult(this.value)" type="text" name="search" class="input-text" maxlength="128" />
+                                                 <input id="search" type="text" name="title" value="" class="input-text" onkeyup="showResult(this.value)" maxlength="128" />
                                                  <button type="submit" title="Search" class="button"><span><span>Search</span></span></button>
-                                                 <div id="livesearch"></div>
                                              </div>
+                                             <div class="suggestionsBox" id="suggestionBox" style="visibility: hidden; margin-left: 45%;">
+                                                 <div class="suggestionList" id="liveSearch"></div>
+                                             </div>    
                                          </form>
                                      {% endblock %}
                                      

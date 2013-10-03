@@ -27,14 +27,20 @@ class ProductRepository extends EntityRepository
                         ->getResult();
     }
    
-    public function getProducts($orderBy, $direction, $cid, $stock, $price, $str)
-    {        
+    public function getProducts($orderBy, $direction, $cid=0, $stock=null, $price=null, $str='', $cat)
+    {       
+        
+        $orderBy == null ? $orderBy='title' : $orderBy;
+        $direction == null ? $direction='asc' : $direction;
+        
         $qb = $this->createQueryBuilder('p')
                 ->select('p, c')
                 ->join('p.category', 'c')
                 ->addOrderBy('p.'.$orderBy, $direction);
         $qb->add('where', 'p.title LIKE ?1')
            ->setParameter(1, '%'.$str.'%');
+        if($cat != null)
+            $qb->andWhere ('c.label = :cat')->setParameter('cat', $cat);
         
         if($cid != 0)
             $qb->andWhere ('c.id = :cid')->setParameter('cid', $cid);

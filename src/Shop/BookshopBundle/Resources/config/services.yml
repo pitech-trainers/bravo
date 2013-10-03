@@ -1,6 +1,8 @@
 parameters:
 #    shop_bookshop.example.class: Shop\BookshopBundle\Example
     finder.class: Symfony\Component\Finder\Finder
+    helper.class: Shop\BookshopBundle\Helper\Helper
+    request.class: Symfony\Component\HttpFoundation\Request
 
 services:
 #    shop_bookshop.example:
@@ -8,4 +10,7 @@ services:
 #        arguments: [@service_id, "plain_value", %parameter%]
     finder:
         class: "%finder.class%"
-#    
+    helper:
+        class: "%helper.class%"
+    request:
+        class: "%request.class%"
