@@ -14,3 +14,8 @@ services:
         class: "%helper.class%"
     request:
         class: "%request.class%"
+    user.registration.form.type:
+        class: Shop\BookshopBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: user_registration }

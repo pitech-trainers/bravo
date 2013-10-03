@@ -60,6 +60,8 @@ class User extends BaseUser
         parent::__construct();
     }
 
+
+
     /**
      * Get id
      *
@@ -79,7 +81,6 @@ class User extends BaseUser
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
-
         return $this;
     }
 
@@ -102,7 +103,6 @@ class User extends BaseUser
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
-
         return $this;
     }
 
@@ -125,7 +125,6 @@ class User extends BaseUser
     public function setPhone($phone)
     {
         $this->phone = $phone;
-
         return $this;
     }
 
@@ -148,7 +147,6 @@ class User extends BaseUser
     public function setGender($gender)
     {
         $this->gender = $gender;
-
         return $this;
     }
 
@@ -171,7 +169,6 @@ class User extends BaseUser
     public function setBillingAddressId($billingAddressId)
     {
         $this->billing_address_id = $billingAddressId;
-
         return $this;
     }
 
@@ -194,7 +191,6 @@ class User extends BaseUser
     public function setShippingAddressId($shippingAddressId)
     {
         $this->shipping_address_id = $shippingAddressId;
-
         return $this;
     }
 
