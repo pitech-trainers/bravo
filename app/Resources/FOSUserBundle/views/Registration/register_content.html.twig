@@ -1,5 +1,5 @@
 {% trans_default_domain 'FOSUserBundle' %}
-    
+
 <div class="account-create">
     <div class="page-title">
         <h1>Create an Account</h1>
@@ -79,7 +79,7 @@
         </div>
         <div class="buttons-set">
             <p class="required">* Required Fields</p>
-            <p class="back-link"><a href=""><small>&laquo; </small>Back</a></p>
+            <p class="back-link"><a href="{{ path("fos_user_security_login") }}"><small>&laquo; </small>Back</a></p>
             <button type="submit" name="submit" title="Submit" class="button" value="{{ 'registration.submit'|trans }}"><span><span>Submit</span></span></button>
             {{  form_rest(form) }}
         </div>
