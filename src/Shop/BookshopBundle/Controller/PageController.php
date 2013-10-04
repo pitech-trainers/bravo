@@ -52,26 +52,4 @@ class PageController extends Controller
         return $this->render('ShopBookshopBundle:Page:category.html.twig', array('products' => $pagination, 'categories' => $cat));
     }
     
-    public function ajaxSearch()
-    {
-        
-        $res = "no match";
-            echo '<li>'.$res.'</li>';
-        
-        /* $products = getProductsByTitle;
-        if (sizeof($products) == 0)
-        {
-            $res = "no match";
-            echo '<li>'.$res.'</li>';
-        } else
-        {
-            $res = $products;
-            for ($i = 0; $i < 5 && $i< sizeof($res); $i++)
-            {
-                echo '<li><a style="text-decoration: none" href=' . url('product', array( 'pid' => $res[$i]['id'], 'cid'=>$res[$i]['category_id'])) . '>' . $res[$i]['title'] . '</a></li>';
-            }
-        }
-        */
-    }
-    
 }
