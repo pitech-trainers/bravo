@@ -30,6 +30,11 @@ class Product
     protected $category;
 
     /**
+     * @ORM\OneToOne(targetEntity="CartItem", mappedBy="product")
+     */
+    protected $cartItem;
+    
+    /**
      *
      * @ORM\Column(type="integer") 
      */
@@ -82,6 +87,8 @@ class Product
      */
     protected $image;
 
+    
+
     /**
      * Get id
      *
@@ -101,7 +108,7 @@ class Product
     public function setTitle($title)
     {
         $this->title = $title;
-
+    
         return $this;
     }
 
@@ -124,7 +131,7 @@ class Product
     public function setPrice($price)
     {
         $this->price = $price;
-
+    
         return $this;
     }
 
@@ -147,7 +154,7 @@ class Product
     public function setIsbn($isbn)
     {
         $this->isbn = $isbn;
-
+    
         return $this;
     }
 
@@ -170,7 +177,7 @@ class Product
     public function setAppereanceYear($appereanceYear)
     {
         $this->appereance_year = $appereanceYear;
-
+    
         return $this;
     }
 
@@ -193,7 +200,7 @@ class Product
     public function setDescription($description)
     {
         $this->description = $description;
-
+    
         return $this;
     }
 
@@ -216,7 +223,7 @@ class Product
     public function setShortDescription($shortDescription)
     {
         $this->short_description = $shortDescription;
-
+    
         return $this;
     }
 
@@ -239,7 +246,7 @@ class Product
     public function setStock($stock)
     {
         $this->stock = $stock;
-
+    
         return $this;
     }
 
@@ -254,29 +261,6 @@ class Product
     }
 
     /**
-     * Set image
-     *
-     * @param string $image
-     * @return Product
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string 
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
      * Set active
      *
      * @param integer $active
@@ -285,7 +269,7 @@ class Product
     public function setActive($active)
     {
         $this->active = $active;
-
+    
         return $this;
     }
 
@@ -300,26 +284,26 @@ class Product
     }
 
     /**
-     * Set author
+     * Set image
      *
-     * @param \Shop\BookshopBundle\Entity\Author $author
+     * @param string $image
      * @return Product
      */
-    public function setAuthor(\Shop\BookshopBundle\Entity\Author $author = null)
+    public function setImage($image)
     {
-        $this->author = $author;
-
+        $this->image = $image;
+    
         return $this;
     }
 
     /**
-     * Get author
+     * Get image
      *
-     * @return \Shop\BookshopBundle\Entity\Author 
+     * @return string 
      */
-    public function getAuthor()
+    public function getImage()
     {
-        return $this->author;
+        return $this->image;
     }
 
     /**
@@ -331,7 +315,7 @@ class Product
     public function setCategory(\Shop\BookshopBundle\Entity\Categories $category = null)
     {
         $this->category = $category;
-
+    
         return $this;
     }
 
@@ -345,4 +329,49 @@ class Product
         return $this->category;
     }
 
+    /**
+     * Set cartItem
+     *
+     * @param \Shop\BookshopBundle\Entity\CartItem $cartItem
+     * @return Product
+     */
+    public function setCartItem(\Shop\BookshopBundle\Entity\CartItem $cartItem = null)
+    {
+        $this->cartItem = $cartItem;
+    
+        return $this;
+    }
+
+    /**
+     * Get cartItem
+     *
+     * @return \Shop\BookshopBundle\Entity\CartItem 
+     */
+    public function getCartItem()
+    {
+        return $this->cartItem;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \Shop\BookshopBundle\Entity\Author $author
+     * @return Product
+     */
+    public function setAuthor(\Shop\BookshopBundle\Entity\Author $author = null)
+    {
+        $this->author = $author;
+    
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \Shop\BookshopBundle\Entity\Author 
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 }

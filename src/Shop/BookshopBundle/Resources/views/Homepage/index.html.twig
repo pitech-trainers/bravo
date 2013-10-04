@@ -34,6 +34,9 @@
         {% endfor %}
      </tbody>
 </table>
-{% block leftSidebar %}{% endblock %}
 
 {% endblock %}
+
+{% block leftSidebar %}{% endblock %}
+
+{% block rightSidebar%}{{parent()}}{% endblock %}
