@@ -7,3 +7,15 @@ shop_bookshop_category:
     requirements:
         _method:  GET|POST
         id: \d+
+shop_bookshop_cart:
+    pattern:  /cart/
+    defaults: { _controller: ShopBookshopBundle:Cart:cartPage }
+    requirements:
+        _method:  GET|POST
+        id: \d+
+shop_bookshop_remove:
+    pattern:  /cart/remove
+    defaults: { _controller: ShopBookshopBundle:Cart:removeItem }
+    requirements:
+        _method: POST
+        id: \d+        

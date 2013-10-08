@@ -14,7 +14,7 @@ class Builder extends ContainerAware
         $menu->setChildrenAttributes(array('class' => 'links'));
 
         $menu->addChild('Home', array('route' => 'shop_bookshop_homepage'));
-        $menu->addChild('My cart', array('route' => 'shop_bookshop_homepage'));
+        $menu->addChild('My cart', array('route' => 'shop_bookshop_cart'));
         $menu->addChild('Checkout', array('route' => 'shop_bookshop_homepage'));
         $menu->addChild('Log in', array('route' => 'shop_bookshop_homepage'));
 
@@ -27,7 +27,7 @@ class Builder extends ContainerAware
         $menu->setChildrenAttributes(array('class' => 'links'));
 
         $menu->addChild('Home', array('route' => 'shop_bookshop_homepage'));
-        $menu->addChild('My cart', array('route' => 'shop_bookshop_homepage'));
+        $menu->addChild('My cart', array('route' => 'shop_bookshop_cart'));
         $menu->addChild('Checkout', array('route' => 'shop_bookshop_homepage'));
         $menu->addChild('My Account', array('route' => 'shop_bookshop_homepage'));
         $menu->addChild('Logout', array('route' => 'shop_bookshop_homepage'));
