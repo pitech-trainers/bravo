@@ -1,41 +1,33 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="main-container col1-layout">
-    <div class="main">
-        <div class="col-main">
-            <div class="account-create">
-                <form action="{{ path('fos_user_resetting_send_email') }}" method="post" id="newsletter-validate-detail">
-                    <div class="fieldset">
-                        <h2 class="legend">Forgot password</h2>
-                        <div>
-                            <fieldset>
-                                <h4>Forgot your password?</h4>
-                                <p>Please enter your username or email below:</p>
-                                <ul class="form-list">
-                                    <li>
-                                        <label for="username">{{ 'resetting.request.username'|trans }}</label>
-                                        <div class="input-box">
-                                            <input type="text" id="username" name="username" required="required" />
-                                        </div>
-                                        {% if invalid_username is defined %}
-                                        <p style="color:red;">{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
-                                        {% endif %}
-
-                                        </div>
-                                    </li>
-                                </ul>
-                                <input name="context" value="checkout" type="hidden" />
-                            </fieldset>
-                        </div>
-                        <div>
-                            <div class="buttons-set">
-                                <button type="submit" value="{{ 'resetting.request.submit'|trans }}" name="reset" class="button" ><span><span>Reset password</span></span></button>
-                                <p class="back-link"><a href="{{ path("fos_user_security_login") }}" class="back-link"><small>&laquo; </small>Back</a></p>
+<div class="account-create">
+    <form action="{{ path('fos_user_resetting_send_email') }}" method="post" id="newsletter-validate-detail">
+        <div class="fieldset">
+            <h2 class="legend">Forgot password</h2>
+                <fieldset>
+                    <h4>Forgot your password?</h4>
+                    <p>Please enter your username or email below:</p>
+                    <ul class="form-list">
+                        <li>
+                            <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                            <div class="input-box">
+                                <input type="text" id="username" name="username" required="required" />
                             </div>
-                        </div>
-                    </div>
-                </form>
+                                 {% if invalid_username is defined %}
+                            <p style="color:red;">{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+                                 {% endif %}
+
+                        </li>
+                    </ul>
+                    <input name="context" value="checkout" type="hidden" />
+                </fieldset>
             </div>
-        </div>
-    </div>
+            <div>
+                <div class="buttons-set">
+                    <button type="submit" value="{{ 'resetting.request.submit'|trans }}" name="reset" class="button" ><span><span>Reset password</span></span></button>
+                    <p class="back-link"><a href="{{ path("fos_user_security_login") }}" class="back-link"><small>&laquo; </small>Back</a></p>
+                </div>
+            </div>
+     </form>
 </div>
+

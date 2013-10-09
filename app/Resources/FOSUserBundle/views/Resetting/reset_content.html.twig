@@ -1,8 +1,32 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
-    </div>
-</form>
+
+<div class="account-create">
+    <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+        <div class="fieldset">
+            <h2 class="legend">Change password</h2>
+                <fieldset>
+                    <ul class="form-list">
+                        <li>
+                           {{ form_label(form.plainPassword['first']) }}<em>*</em>
+                            <div class="input-box">
+                                {{ form_widget(form.plainPassword['first'], { 'attr': {'class': 'input-text required-entry'} }) }}
+                            </div>
+                        </li>
+                        <li>
+                           {{ form_label(form.plainPassword['second']) }}<em>*</em>
+                            <div class="input-box">
+                                {{ form_widget(form.plainPassword['second'], { 'attr': {'class': 'input-text required-entry'} }) }}
+                            </div>
+                        </li>
+                    </ul>
+                    <input name="context" value="checkout" type="hidden" />
+                </fieldset>
+        </div>
+             <div class="buttons-set">
+                    <p class="required">* Required Fields</p>
+                    <button type="submit" value="{{ 'resetting.reset.submit'|trans }}" name="reset" class="button" ><span><span>Change password</span></span></button>
+                    {{  form_rest(form) }}
+             </div>
+    </form>
+</div>
