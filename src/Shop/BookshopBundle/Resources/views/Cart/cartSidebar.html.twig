@@ -4,46 +4,46 @@
             <strong><span>My Cart</span></strong>
         </div>
             {% if cart|length == 0 %}{% set noItems = 0 %}
-            {% else %}               {% set noItems = cart[0].cartItems|length %}   
+            {% else %}               {% set noItems = cart[0].cartItems|length %}
             {% endif %}
         <div class="block-content">
-        
+
         {% if noItems == 0 %}
             <p class="empty">You have no items in your shopping cart.</p>
-        {% else %}   
+        {% else %}
             <div class="summary">
                 <p class="amount">There are <a href="{{ path('shop_bookshop_cart') }}">{{noItems}} items</a> in your cart.</p>
                 <p class="subtotal">
-                    <span class="label">Cart Subtotal:</span> <span class="price">{{ cart[0].total }}</span>
+                    <span class="label">Cart Subtotal:</span> <span class="price">{{ cart[0].total }} $</span>
                 </p>
             </div>
-                
+
             <div class="actions">
                 <button type="button" title="Checkout" class="button" ><span><span>Checkout</span></span></button>
             </div>
-             
+
             <p class="block-subtitle">Recently added item(s)</p>
 
             <ol id="cart-sidebar" class="mini-products-list">
                 {% if noItems>3 %}{% set noItems=3 %}{% endif %}
                 {% for i in range(0, noItems-1) %}
                     <li class="item">
-                        <a href="#" title="{{ cart[0].cartItems[i].title }}" class="product-image">
+                        <a href="{{ path('shop_bookshop_product', { 'id': cart[0].cartItems[i].product.id }  ) }}" title="{{ cart[0].cartItems[i].title }}" class="product-image">
                             <img src={{ asset('bundles/shopbookshop/image/'~cart[0].cartItems[i].product.image) }} width="50" height="50" alt="{{ cart[0].cartItems[i].title }}" />
                         </a>
                         <div class="product-details">
                             <a href="#" title="Remove This Item" class="btn-remove">Remove This Item</a>
                             <a href="{{ path('shop_bookshop_cart') }}" title="Edit item" class="btn-edit">Edit item</a>
-                            <p class="product-name"><a href="#">{{ cart[0].cartItems[i].title }}</a></p>
+                            <p class="product-name"><a href="{{ path('shop_bookshop_product', { 'id': cart[0].cartItems[i].product.id }  ) }}">{{ cart[0].cartItems[i].title }}</a></p>
                             <strong>{{ cart[0].cartItems[i].quantity }}</strong> x
                             <span class="price">{{ cart[0].cartItems[i].price}} US$</span>
                         </div>
                     </li>
                 {% endfor %}
-                
+
             </ol>
-        {% endif %}    
-        
+        {% endif %}
+
         </div>
     </div>
-</div>    
+</div>

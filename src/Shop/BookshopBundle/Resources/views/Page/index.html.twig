@@ -3,8 +3,6 @@
 {% block content %}
 
 <h3>{{ 'Latest products'|trans}}</h3>
-
-<h3>Latest Products</h3>
 <table cellspacing="0" border="0">
     <tbody>
         {% for i in range(low=0, high=latestProd|length-1, step=2) %}

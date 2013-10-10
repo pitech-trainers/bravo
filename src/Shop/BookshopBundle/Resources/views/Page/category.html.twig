@@ -1,7 +1,7 @@
-{% extends 'ShopBookshopBundle::layout.html.twig' %}
+{% extends 'ShopBookshopBundle::productpage_layout.html.twig' %}
 
 {% block title %}Category{% endblock%}
-{% block container %}  
+{% block container %}
 <div class="main-container col3-layout">
     <div class="main">
         <div class="breadcrumbs">
@@ -12,25 +12,25 @@
                 </li>
                 <li class="category35">
                     <strong>
-                        {% if products.params.clabel is defined %} 
-                            {{products.params.clabel}} 
+                        {% if products.params.clabel is defined %}
+                            {{products.params.clabel}}
                         {% endif %}
-                        {% if products.params.search is defined %} 
-                            {{'Search By: '~products.params.search}} 
-                        {% endif %}    
+                        {% if products.params.search is defined %}
+                            {{'Search By: '~products.params.search}}
+                        {% endif %}
                     </strong>
                 </li>
             </ul>
         </div>
-         
+
         <div class="col-wrapper">
             <div class="col-main">
                 <div class="page-title category-title">
-                    <h1>{% if products.params.clabel is defined %} 
-                            {{products.params.clabel}} 
+                    <h1>{% if products.params.clabel is defined %}
+                            {{products.params.clabel}}
                         {% endif %}
-                        {% if products.params.search is defined %} 
-                            {{"Search By: ' "~products.params.search~"'"}} 
+                        {% if products.params.search is defined %}
+                            {{"Search By: ' "~products.params.search~"'"}}
                         {% endif %}
                     </h1>
                 </div>
@@ -55,14 +55,14 @@
                                         <label>{{'Direction'|trans}}: {{products.params.direction}}endent</label>
                                     {% endif %}
                                 </div>
-                            </div>    
+                            </div>
                         {% else %}
-                                {{ 'There are no items in this category.'|trans }} 
+                                {{ 'There are no items in this category.'|trans }}
                         {% endif %}
                     </div>
-                    
+
                     <ul class="products-grid">
-                    {% for product in products %}    
+                    {% for product in products %}
                         {% if loop.index%3==1 %}
 
                             <li class="item first">
@@ -100,7 +100,7 @@
                                         <span><span>Add to Cart</span></span>
                                     </button>
                                 </div>
-                                {% else %} <div class="actions" style='color:red'><span>Not available</span></div>    
+                                {% else %} <div class="actions" style='color:red'><span>Not available</span></div>
                                 {% endif %}
                             </li>
                         {% endif %}
@@ -119,11 +119,11 @@
                                         <span><span>Add to Cart</span></span>
                                     </button>
                                 </div>
-                                {% else %} <div class="actions" style='color:red'><span>Not available</span></div>    
-                                {% endif %}    
+                                {% else %} <div class="actions" style='color:red'><span>Not available</span></div>
+                                {% endif %}
                             </li>
                         {% endif %}
-                    {% endfor %}    
+                    {% endfor %}
                     </ul>
 
                         <div class="toolbar-bottom">
@@ -146,7 +146,7 @@
                                         <label>{{'Direction'|trans}}: {{products.params.direction}}endent</label>
                                         {% endif %}
                                     </div>
-                                </div>    
+                                </div>
                                 {% endif %}
                             </div>
                         </div>
@@ -160,9 +160,9 @@
                         </div>
                         <div class="block-content">
                             {% set cid, clabel, search= null, null, null %}
-                            {% if products.params.cid is defined %}{% set cid=products.params.cid %}{% endif %} 
-                            {% if products.params.clabel is defined %}{% set clabel=products.params.clabel %}{% endif %} 
-                            {% if products.params.search is defined %}{% set search=products.params.search %}{% endif %}     
+                            {% if products.params.cid is defined %}{% set cid=products.params.cid %}{% endif %}
+                            {% if products.params.clabel is defined %}{% set clabel=products.params.clabel %}{% endif %}
+                            {% if products.params.search is defined %}{% set search=products.params.search %}{% endif %}
                             <div class="currently">
                                 {% if products.params.pr is defined or products.params.st is defined %}
                                 <p class="block-subtitle">{{'Currently Shopping by'|trans}}: </p>
@@ -170,8 +170,8 @@
                                 <ol>
                                     {% if products.params.cat is defined %}
                                     <li>
-                                        <span class="label">{{'Category'|trans}}:</span> 
-                                        <span class="value">   
+                                        <span class="label">{{'Category'|trans}}:</span>
+                                        <span class="value">
                                         {{ products.params.cat }}
                                         </span>
                                         <a class="btn-remove" href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
@@ -180,8 +180,8 @@
                                     {% endif %}
                                     {% if products.params.pr is defined %}
                                     <li>
-                                        <span class="label">{{'Price'|trans}}:</span> 
-                                        <span class="value">   
+                                        <span class="label">{{'Price'|trans}}:</span>
+                                        <span class="value">
                                         {% if products.params.pr==1%}<span class="price">0,00 US$</span> - <span class="price">19,99 US$</span>{% endif %}
                                         {% if products.params.pr==2%}<span class="price">20,00 US$</span> - <span class="price">39,99 US$</span>{% endif %}
                                         {% if products.params.pr==3%}<span class="price">40,00 US$</span>{{' and above'|trans}}{% endif %}
@@ -192,8 +192,8 @@
                                     {% endif %}
                                     {% if products.params.st is defined %}
                                     <li>
-                                        <span class="label">{{'Stock'|trans}}:</span> 
-                                        <span class="value"> 
+                                        <span class="label">{{'Stock'|trans}}:</span>
+                                        <span class="value">
                                         {% if products.params.st==1 %}{{'Available'|trans}}{% endif %}
                                         {% if products.params.st==0 %}{{'Soon'|trans}}{% endif %}
                                         </span>
@@ -203,9 +203,9 @@
                                     {% endif %}
                                 </ol>
                             </div>
-                            
-                            {% if products.params.pr is defined or products.params.st is defined or products.params.cat is defined %}    
-                                <div class="actions">  
+
+                            {% if products.params.pr is defined or products.params.st is defined or products.params.cat is defined %}
+                                <div class="actions">
                                     <a href="{{ path('shop_bookshop_category', {'search':search, 'cid':cid, 'clabel':clabel}) }}">
                                         {{'Clear All'|trans}}
                                     </a>
@@ -219,13 +219,13 @@
                                     <ol>
                                         {% for category in categories %}
                                         <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
-                                        ({'cat': category}) ) }}">{{category}}</a></li>   
-                                        {% endfor %}   
-                                    </ol>    
+                                        ({'cat': category}) ) }}">{{category}}</a></li>
+                                        {% endfor %}
+                                    </ol>
                                 </dd>
                                 {% endif %}
                                 <dt>{{'Price'|trans}}</dt>
-                                
+
                                 <dd>
                                     <ol>
                                         <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
@@ -243,7 +243,7 @@
                                             ({'st': '1'}) ) }}">{{'Available'|trans}}</a></li>
                                         <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
                                             ({'st': '0'}) ) }}">{{'Soon'|trans}}</a></li>
-                                    </ol>            
+                                    </ol>
                                 </dd>
                             </dl>
                         </div>
@@ -251,7 +251,7 @@
                 </div>
             {% endblock %}
         </div>
-        {% block rightSidebar %}{{ parent() }}{% endblock %} 
+        {% block rightSidebar %}{{ parent() }}{% endblock %}
     </div>
 </div>
 {% endblock %}

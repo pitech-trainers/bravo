@@ -42,8 +42,6 @@
                                      {% endblock %}
 
                                      {% block headermenu %}
-                                     <p class="welcome-msg">{% block welcomeMessage %}{{'Welcome'|trans}}!{% endblock %}</p>
-                                         {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuGuest') }}
                                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                                <p class="welcome-msg">Welcome {{ app.user.username }} !</p>
                                                {{ knp_menu_render('ShopBookshopBundle:Builder:headerMenuUser') }}

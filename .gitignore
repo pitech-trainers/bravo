@@ -1,6 +1,9 @@
 *.swp
 *.swo
+<<<<<<< Updated upstream
 *~
+=======
+>>>>>>> Stashed changes
 config/config.php
 /nbproject
 

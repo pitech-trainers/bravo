@@ -44,7 +44,7 @@ class CartController extends Controller
     public function removeItemAction(CartItem $cartItem)
     {
         //var_dump($cartItem); die();
-        
+
         if (!$cartItem) {
             throw $this->createNotFoundException('No product found');
         }

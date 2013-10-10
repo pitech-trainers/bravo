@@ -1,7 +1,5 @@
 <?php
 
-// src/Blogger/BlogBundle/Controller/DefaultController.php
-
 namespace Shop\BookshopBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,7 +20,7 @@ class PageController extends Controller
         $latestProd = $em->getRepository('ShopBookshopBundle:Product')
                 ->getLatestProducts(6);
 
-        return $this->render('ShopBookshopBundle:Homepage:index.html.twig', array(
+        return $this->render('ShopBookshopBundle:Page:index.html.twig', array(
                     'latestProd' => $latestProd));
     }
 
@@ -63,6 +61,11 @@ class PageController extends Controller
         $randProd = $em->getRepository('ShopBookshopBundle:Product')->getRandomProd($product->getCategory()->getId(), 4);
 
         return $this->render('ShopBookshopBundle:Page:product.html.twig', array("product" => $product, "randProd" => $randProd));
+    }
+
+    public function cartPageAction()
+    {
+      return $this->render('ShopBookshopBundle:Page:cart.html.twig');
     }
 
 }

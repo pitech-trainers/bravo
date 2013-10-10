@@ -6,7 +6,7 @@
 <div class="main-container col2-layout">
     <div class="main">
         <div class="col-wrapper">
-            
+
             <div class="breadcrumbs">
                 {% block breadcrumbs %}
                 {% endblock %}
@@ -20,22 +20,11 @@
                <div class="col-left sidebar">
                       {% block lsidebar %}
                       {% endblock %}
-               </div>           
+               </div>
         </div>
-
-            {% block rsidebar %}
-            <div class="col-right sidebar">
-                <div class="block block-cart">
-                    <div class="block-title">
-                        <strong><span>My Cart</span></strong>
-                    </div>
-                    <div class="block-content">
-                        <p class="empty">You have no items in your shopping cart.</p>
-                    </div>
-                </div>
-
-            </div>
-            {% endblock %}
+        {% block rightSidebar %}
+        {{ render(controller('ShopBookshopBundle:Cart:cartSidebar')) }}
+        {% endblock %}
     </div>
 </div>
 
