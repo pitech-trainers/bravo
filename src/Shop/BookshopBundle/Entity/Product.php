@@ -30,7 +30,7 @@ class Product
     protected $category;
 
     /**
-     * @ORM\OneToOne(targetEntity="CartItem", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="CartItem", mappedBy="product")
      */
     protected $cartItem;
     

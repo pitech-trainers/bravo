@@ -20,12 +20,12 @@ class CartItem
 
     /**
      * @ORM\ManyToOne(targetEntity="Cart", inversedBy="cartItems")
-     * @ORM\JoinColumn(name="cart_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="cart_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $cart;
 
     /**
-     * @ORM\OneToOne(targetEntity="Product", inversedBy="cartItem")
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="cartItem")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
     protected $product;
@@ -45,6 +45,15 @@ class CartItem
      */
     protected $price;
 
+    function __construct($cart, $product, $title, $quantity, $price)
+    {
+        $this->cart = $cart;
+        $this->product = $product;
+        $this->title = $title;
+        $this->quantity = $quantity;
+        $this->price = $price;
+    }
+    
     /**
      * Get id
      *

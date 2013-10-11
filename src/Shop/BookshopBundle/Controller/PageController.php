@@ -61,13 +61,4 @@ class PageController extends Controller
 
         return $this->render('ShopBookshopBundle:Page:product.html.twig', array("product" => $product, "randProd" => $randProd));
     }
-
-    public function cartPageAction()
-    {
-      return $this->render('ShopBookshopBundle:Page:cart.html.twig');
-    }
-        
-        return $this->render('ShopBookshopBundle:Page:product.html.twig', array("product" => $product, "randProd" => $randProd));
-    }
-
 }

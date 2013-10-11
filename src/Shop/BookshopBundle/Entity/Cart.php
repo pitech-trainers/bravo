@@ -47,8 +47,12 @@ class Cart
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct($user, $date, $active, $total)
     {
+        $this->setUser($user);
+        $this->setDate($date);
+        $this->setActive($active);
+        $this->setTotal($total);
         $this->cartItems = new \Doctrine\Common\Collections\ArrayCollection();
     }
     

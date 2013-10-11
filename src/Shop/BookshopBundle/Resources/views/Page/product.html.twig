@@ -7,7 +7,7 @@
         <span>/ </span>
     </li>
     <li class="category10">
-        <a href="" title="">{{ product.category.label }}</a>
+        <a href="{{ path('shop_bookshop_category') }}" title="">{{ product.category.label }}</a>
         <span>/</span>
     </li>
     <li class="product">
@@ -22,7 +22,7 @@
 <div class="product-view">
     <div class="product-essential">
 
-        <form action="" method="post" id="product_addtocart_form">
+        <form action="{{path('shop_bookshop_addProduct')}}" method="post" id="product_addtocart_form">
             <div class="product-shop">
                 <div class="product-name">
                     <h1>{{ product.title }}</h1>
@@ -35,31 +35,29 @@
 
                 <p class="availability in-stock">Availability: 
                     <span>
-                        {% if product.stock > 0  %}
+                        {% if product.active > 0  %}
                             In stock
                         {% else %}
                             Out of stock
                         {% endif %}
                     </span>
                 </p>
-
-
                 <div class="price-box">
                     <span class="regular-price" id="product-price-MyProductID">
                         <span class="price">{{ product.price }} US $</span>
                     </span>
                 </div>
-
-
-
+                {% if product.active > 0  %}
                 <div class="add-to-box">
                     <div class="add-to-cart">
                         <label for="qty">Qty:</label>
                         <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty" />
-                        <button type="button" onclick="loadCart('product_id', 0)" title="Add to Cart"   
+                        <input type="hidden" name="productId" value="{{product.id}}">
+                        <button type="submit" title="Add to Cart"   
                                 class="button btn-cart" ><span><span>Add to Cart</span></span></button>
                     </div>
                 </div>
+                {% endif %}
             </div>
 
             <div class="product-img-box">
