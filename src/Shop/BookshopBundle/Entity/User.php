@@ -55,6 +55,11 @@ class User extends BaseUser
      */
     protected $shipping_address_id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Cart", mappedBy="user")
+     */
+    protected $cart;
+    
     public function __construct()
     {
         parent::__construct();
@@ -202,5 +207,38 @@ class User extends BaseUser
     public function getShippingAddressId()
     {
         return $this->shipping_address_id;
+    }
+
+    /**
+     * Add cart
+     *
+     * @param \Shop\BookshopBundle\Entity\Cart $cart
+     * @return User
+     */
+    public function addCart(\Shop\BookshopBundle\Entity\Cart $cart)
+    {
+        $this->cart[] = $cart;
+    
+        return $this;
+    }
+
+    /**
+     * Remove cart
+     *
+     * @param \Shop\BookshopBundle\Entity\Cart $cart
+     */
+    public function removeCart(\Shop\BookshopBundle\Entity\Cart $cart)
+    {
+        $this->cart->removeElement($cart);
+    }
+
+    /**
+     * Get cart
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCart()
+    {
+        return $this->cart;
     }
 }

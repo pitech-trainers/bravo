@@ -24,7 +24,7 @@ class Cart
     protected $cartItems;
     
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="cart")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;

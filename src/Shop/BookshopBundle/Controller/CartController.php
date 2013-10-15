@@ -9,14 +9,15 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Shop\BookshopBundle\Entity\CartItem;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class CartController extends Controller
 {
-    
+
     public function cartSidebarAction()
     {
-        $userId = (is_null($this->getUser()) ? 0 : $this->getUser()->getID() ) ;
-        
+        $userId = (is_null($this->getUser()) ? 0 : $this->getUser()->getId() );
+
         $em = $this->getDoctrine()
                 ->getManager();
 
@@ -24,22 +25,22 @@ class CartController extends Controller
                 ->getCartByUser($userId);
 
         $user = $em->getRepository('ShopBookshopBundle:User')->find($userId);
-        
+
         if (sizeof($cart) == 0) {
-                $newCart = new \Shop\BookshopBundle\Entity\Cart($user, date('Y-m-d'), 1, 0);
-                $em->persist($newCart);
-                $em->flush();
-                $cart = $em->getRepository('ShopBookshopBundle:Cart')->getCartByUser($userId);
+            $newCart = new \Shop\BookshopBundle\Entity\Cart($user, date('Y-m-d'), 1, 0);
+            $em->persist($newCart);
+            $em->flush();
+            $cart = $em->getRepository('ShopBookshopBundle:Cart')->getCartByUser($userId);
         }
 
         return $this->render('ShopBookshopBundle:Cart:cartSidebar.html.twig', array(
-                    'cart' => $cart));
+                    'cart' => $cart[0]));
     }
 
     public function cartPageAction()
     {
-        $userId = (is_null($this->getUser()) ? 0 : $this->getUser()->getID() ) ;
-        
+        $userId = (is_null($this->getUser()) ? 0 : $this->getUser()->getId() );
+
         $em = $this->getDoctrine()
                 ->getManager();
 
@@ -47,15 +48,15 @@ class CartController extends Controller
                 ->getCartByUser($userId);
 
         return $this->render('ShopBookshopBundle:Cart:cartPage.html.twig', array(
-                    'cart' => $cart));
+                    'cart' => $cart[0]));
     }
 
     public function removeProductAction($cartItemId)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $userId = (is_null($this->getUser()) ? 0 : $this->getUser()->getID() ) ;
-        
+        $userId = (is_null($this->getUser()) ? 0 : $this->getUser()->getId() );
+
         $cart = $em->getRepository('ShopBookshopBundle:Cart')->getCartByUser($userId);
         $cartItems = $cart[0]->getCartItems();
 
@@ -69,24 +70,35 @@ class CartController extends Controller
         }
 
         $this->updateTotal($cart[0]->getId());
-        return $this->redirect($this->getRequest()->headers->get('referer'));
+
+        $path = $this->getRequest()->headers->get('referer');
+        if (!$path)
+            throw new AccessDeniedHttpException('Wrong way.');
+        return $this->redirect($path);
     }
 
     public function emptyCartAction($cartId)
     {
+        $userId = (is_null($this->getUser()) ? 0 : $this->getUser()->getId() );
+
         $em = $this->getDoctrine()->getManager();
         $cart = $em->getRepository('ShopBookshopBundle:Cart')->getCartById($cartId);
-        $cartItems = $cart[0]->getCartItems();
+        $cartCheck = $em->getRepository('ShopBookshopBundle:Cart')->getCartByUser($userId);
+        if ($cart[0]->getId() == $cartCheck[0]->getId()) {
+            $cartItems = $cart[0]->getCartItems();
 
-        if (!(empty($cartItems))) {
-            foreach ($cartItems as $cartItem) {
-                $em->remove($cartItem);
-                $em->flush();
+            if (!(empty($cartItems))) {
+                foreach ($cartItems as $cartItem) {
+                    $em->remove($cartItem);
+                    $em->flush();
+                }
             }
+            $this->updateTotal($cart[0]->getId());
         }
-
-        $this->updateTotal($cart[0]->getId());
-        return $this->redirect($this->getRequest()->headers->get('referer'));
+        $path = $this->getRequest()->headers->get('referer');
+        if (!$path)
+            throw new AccessDeniedHttpException('You are not allowed.');
+        return $this->redirect($path);
     }
 
     public function addProductAction()
@@ -98,8 +110,8 @@ class CartController extends Controller
             if (ctype_digit($_POST['qty']))
                 $quantity = $_POST['qty'];
 
-        $userId = (is_null($this->getUser()) ? 0 : $this->getUser()->getID() ) ;
-        
+        $userId = (is_null($this->getUser()) ? 0 : $this->getUser()->getId() );
+
         $em = $this->getDoctrine()->getManager();
         $cart = $em->getRepository('ShopBookshopBundle:Cart')->getCartByUser($userId);
         $product = $em->getRepository('ShopBookshopBundle:Product')->find($productId);
@@ -132,8 +144,8 @@ class CartController extends Controller
     public function updateCartAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $userId = (is_null($this->getUser()) ? 0 : $this->getUser()->getID() ) ;
-        
+        $userId = (is_null($this->getUser()) ? 0 : $this->getUser()->getId() );
+
         $cart = $em->getRepository('ShopBookshopBundle:Cart')->getCartByUser($userId);
         $cartItems = $cart[0]->getCartItems();
         foreach ($_POST['qty'] as $key => $value)

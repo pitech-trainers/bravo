@@ -374,4 +374,34 @@ class Product
     {
         return $this->author;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cartItem = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add cartItem
+     *
+     * @param \Shop\BookshopBundle\Entity\CartItem $cartItem
+     * @return Product
+     */
+    public function addCartItem(\Shop\BookshopBundle\Entity\CartItem $cartItem)
+    {
+        $this->cartItem[] = $cartItem;
+    
+        return $this;
+    }
+
+    /**
+     * Remove cartItem
+     *
+     * @param \Shop\BookshopBundle\Entity\CartItem $cartItem
+     */
+    public function removeCartItem(\Shop\BookshopBundle\Entity\CartItem $cartItem)
+    {
+        $this->cartItem->removeElement($cartItem);
+    }
 }

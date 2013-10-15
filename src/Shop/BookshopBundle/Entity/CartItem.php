@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CartItem
 {
-
+   
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

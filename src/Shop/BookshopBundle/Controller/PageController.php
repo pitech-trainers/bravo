@@ -7,13 +7,11 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 
-
 class PageController extends Controller
 {
 
     public function indexAction()
     {
-
         $em = $this->getDoctrine()
                 ->getManager();
 
@@ -26,7 +24,6 @@ class PageController extends Controller
 
     public function categoryAction()
     {
-
         $request = $this->get('request');
 
         $em = $this->getDoctrine()

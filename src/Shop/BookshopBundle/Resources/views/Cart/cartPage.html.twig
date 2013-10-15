@@ -7,7 +7,7 @@
     <div class="main">
         <div class="col-main">
             <div class="cart">
-                {% if cart[0].cartItems|length == 0  %}
+                {% if cart.cartItems|length == 0  %}
                     <center>
                         <p style="font-size:24px"> Your cart is currently empty </p>
                         <a href="{{path('shop_bookshop_homepage')}}">
@@ -52,14 +52,14 @@
                                         <button type="button" title="Continue Shopping" class="button btn-continue" ><span><span>Continue Shopping</span></span></button>
                                         </a>
                                         <button type="submit" name="update_cart_action" value="update_qty" title="Update Shopping Cart" class="button btn-update"><span><span>Update Shopping Cart</span></span></button>
-                                        <a href="{{ path('shop_bookshop_emptyCart',{'cartId': cart[0].id}) }}">    
+                                        <a href="{{ path('shop_bookshop_emptyCart',{'cartId': cart.id}) }}">    
                                         <button type="button" name="update_cart_action" value="empty_cart" title="Clear Shopping Cart" class="button btn-empty" id="empty_cart_button"><span><span>Clear Shopping Cart</span></span></button>
                                         </a>
                                     </td>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                {% for cartItem in cart[0].cartItems|reverse %}
+                                {% for cartItem in cart.cartItems|reverse %}
                                     <tr class="{{cycle(['last even','first odd'], loop.index)}}" >
                                         <td>
                                             <a href="product_detail.html" title="{{cartItem.product.title}}" class="product-image">
@@ -107,7 +107,7 @@
                                         <strong>Grand Total:</strong>
                                     </td>
                                     <td style="" class="a-right">
-                                        <strong><span class="price">${{cart[0].total}}</span></strong>
+                                        <strong><span class="price">${{cart.total}}</span></strong>
                                     </td>
                                 </tr>
                             </tfoot>

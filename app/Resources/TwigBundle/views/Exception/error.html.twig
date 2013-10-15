@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+{% block container %}
+<!DOCTYPE html>
+
+<body>
+    <div class="main-container col2-layout" style="font-size: 24px">
+        <h1 style="color:red">An Error Occurred</h1>
+        <h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+
+        <div>
+            You should not be here!
+        </div>
+        <a href='{{path('shop_bookshop_homepage')}}'> Go Home </a>
+    </div>
+</body>
+{% endblock %}
