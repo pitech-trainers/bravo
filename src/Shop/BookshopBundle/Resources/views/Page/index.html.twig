@@ -1,31 +1,30 @@
-{% extends 'ShopBookshopBundle::layout.html.twig' %}
+{% extends 'ShopBookshopBundle::homepage_layout.html.twig' %}
 
 {% block content %}
-
-<h3>{{ 'Latest products'|trans}}</h3>
+<h3>Latest Products</h3>
 <table cellspacing="0" border="0">
     <tbody>
         {% for i in range(low=0, high=latestProd|length-1, step=2) %}
             
             <tr class="{{ cycle(['even','odd'], loop.index0) }}">
                 <td>
-                    <a href="">
+                    <a href="{{ path('shop_bookshop_product', { 'id': latestProd[i].id } ) }}">
                         <img width="95" alt="" src="{{ asset('bundles/shopbookshop/image/'~latestProd[i].image) }}" class="product-img">
                     </a>
                     <div class="product-description">
-                        <p><a href="">{{ latestProd[i].title }}</a></p>
-                        <p>{{'See all'|trans}} <a href="{{ path('shop_bookshop_category', {'cid': latestProd[i].category.id, 'clabel':latestProd[i].category.label})  }}">{{ latestProd[i].category.label|trans}}</a></p>
+                        <p><a href="{{ path('shop_bookshop_product', { 'id': latestProd[i].id } ) }}">{{ latestProd[i].title }}</a></p>
+                        <p>See all <a href="">{{ latestProd[i].category.label }}</a></p>
                     </div>
                 </td>
 
                 <td>
-                    <a href="">
+                    <a href="{{ path('shop_bookshop_product', { 'id': latestProd[i+1].id } ) }}">
                         <img width="95" alt="" src="{{ asset('bundles/shopbookshop/image/'~latestProd[i+1].image) }}" class="product-img">
                     </a>
                     <div class="product-description">
-                        <p><a href="">{{ latestProd[i+1].title }}</a></p>
+                        <p><a href="{{ path('shop_bookshop_product', { 'id': latestProd[i+1].id } ) }}">{{ latestProd[i+1].title }}</a></p>
 
-                        <p>{{'See all'|trans}} <a href="{{ path('shop_bookshop_category', {'cid': latestProd[i+1].category.id, 'clabel':latestProd[i+1].category.label})  }}">{{ latestProd[i+1].category.label|trans}}</a></p>
+                        <p>See all <a href="">{{ latestProd[i+1].category.label }}</a></p>
                     </div>
                 </td>
             </tr>
@@ -34,6 +33,4 @@
         {% endfor %}
      </tbody>
 </table>
-{% block leftSidebar %}{% endblock %}
-
 {% endblock %}

@@ -7,3 +7,6 @@ shop_bookshop_category:
     requirements:
         _method:  GET|POST
         id: \d+
+shop_bookshop_product:
+    pattern: /product/{id}
+    defaults: { _controller: ShopBookshopBundle:Page:productPage }        

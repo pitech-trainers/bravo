@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+
+{% block container %}
+
+<div class="main-container col2-layout">
+    <div class="main">
+        <div class="col-wrapper">
+
+            <div class="breadcrumbs">
+                {% block breadcrumbs %}
+                {% endblock %}
+            </div>
+            <div class="col-main">
+                <div class="box best-selling">
+                    {% block content %}
+                    {% endblock %}
+                 </div>
+            </div>
+               <div class="col-left sidebar">
+                      {% block leftSidebar %}
+                      {% endblock %}
+               </div>
+        </div>
+        {% block rightSidebar %}
+        {% endblock %}
+    </div>
+</div>
+
+{% endblock %}

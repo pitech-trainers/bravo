@@ -1,0 +1,105 @@
+{% extends 'ShopBookshopBundle::productpage_layout.html.twig' %}
+
+{% block breadcrumbs %}
+<ul>
+    <li class="home">
+        <a href="{{ path('shop_bookshop_homepage') }}" title="Go to Home Page">Home</a>
+        <span>/ </span>
+    </li>
+    <li class="category10">
+        <a href="{{ path('shop_bookshop_category') }}" title="">{{ product.category.label }}</a>
+        <span>/</span>
+    </li>
+    <li class="product">
+        <strong>{{ product.title }}</strong>
+    </li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div id="message"></div>
+
+<div class="product-view">
+    <div class="product-essential">
+
+        <form action="#" method="post" id="product_addtocart_form">
+            <div class="product-shop">
+                <div class="product-name">
+                    <h1>{{ product.title }}</h1>
+                </div>
+
+                <div class="short-description">
+                    <h2>Quick Overview</h2>
+                    <div class="std">{{ product.shortdescription }}</div>
+                </div>
+
+                <p class="availability in-stock">Availability: 
+                    <span>
+                        {% if product.active > 0  %}
+                            In stock
+                        {% else %}
+                            Out of stock
+                        {% endif %}
+                    </span>
+                </p>
+                <div class="price-box">
+                    <span class="regular-price" id="product-price-MyProductID">
+                        <span class="price">{{ product.price }} US $</span>
+                    </span>
+                </div>
+                {% if product.active > 0  %}
+                <div class="add-to-box">
+                    <div class="add-to-cart">
+                        <label for="qty">Qty:</label>
+                        <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty" />
+                        <input type="hidden" name="productId" value="{{product.id}}">
+                        <button type="submit" title="Add to Cart"   
+                                class="button btn-cart" ><span><span>Add to Cart</span></span></button>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="product-img-box">
+                <p class="product-image product-image-zoom">
+                    <img id="image" src="{{ asset('bundles/shopbookshop/image/'~product.image) }}" />
+                </p>
+            </div>
+            <div class="clearer"></div>
+        </form>
+    </div>
+
+    <div class="product-collateral">
+        <div class="box-collateral box-description">
+            <h2>Details</h2>
+            <div class="std">
+                {{ product.description }}
+            </div>
+        </div>
+        <p><a href=""><span>&laquo; Back to list</span></a></p>
+        <div class="box-collateral box-up-sell">
+            <h2>You may also be interested in the following product(s)</h2>
+            <table class="products-grid" id="upsell-product-table">
+                <tr>
+                    {% for rand in randProd %}
+                    <td>
+                        <a href="{{ path('shop_bookshop_product', { 'id': rand.id } ) }}" title="{{ rand.title }}"
+                           class="product-image"><img src="{{ asset('bundles/shopbookshop/image/'~rand.image) }}" width="125" height="125" />
+                        </a>
+
+                        <h3 class="product-name"><a href="{{ path('shop_bookshop_product', { 'id': rand.id } ) }}" title="{{ rand.title }}">{{ rand.title }}</a>
+                        </h3>
+                        <div class="price-box">
+                            <p class="minimal-price">
+                                <span class="price-label">Starting at:</span>
+                                <span class="price" id="product-minimal-price-54-upsell">{{ rand.price }} US$</span>
+                            </p>
+                        </div>
+                    </td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -21,7 +21,7 @@ class PageController extends Controller
         $latestProd = $em->getRepository('ShopBookshopBundle:Product')
                 ->getLatestProducts(6);
 
-        return $this->render('ShopBookshopBundle:Homepage:index.html.twig', array(
+        return $this->render('ShopBookshopBundle:Page:index.html.twig', array(
                     'latestProd' => $latestProd));
     }
 
@@ -43,13 +43,24 @@ class PageController extends Controller
         
         $helper = $this->get('helper');
         $cat = $helper->getCategoryForProducts($products);
-                
+        
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $products, $this->get('request')->query->get('page', 1)/* page number */, 3/* limit per page */
         );
         
         return $this->render('ShopBookshopBundle:Page:category.html.twig', array('products' => $pagination, 'categories' => $cat));
+    }
+    
+    public function productPageAction($id)
+    {
+        $em = $this->getDoctrine()
+                ->getManager();
+
+        $product = $em->getRepository('ShopBookshopBundle:Product')->find($id);
+        $randProd = $em->getRepository('ShopBookshopBundle:Product')->getRandomProd($product->getCategory()->getId(), 4);
+
+        return $this->render('ShopBookshopBundle:Page:product.html.twig', array("product" => $product, "randProd" => $randProd));
     }
     
 }

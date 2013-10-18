@@ -4,12 +4,6 @@ namespace Shop\BookshopBundle\Helper;
 
 class Helper
 {
-
-    function __construct()
-    {
-        
-    }
-
     public function getCategoryForProducts($products)
     {
         if ($products != null) {
@@ -26,5 +20,3 @@ class Helper
     }
 
 }
-
-?>

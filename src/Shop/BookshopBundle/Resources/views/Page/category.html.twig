@@ -1,4 +1,4 @@
-{% extends 'ShopBookshopBundle::layout.html.twig' %}
+{% extends 'ShopBookshopBundle::productpage_layout.html.twig' %}
 
 {% block title %}Category{% endblock%}
 {% block container %}  
@@ -22,7 +22,7 @@
                 </li>
             </ul>
         </div>
-           
+        
         <div class="col-wrapper">
             <div class="col-main">
                 <div class="page-title category-title">
@@ -66,19 +66,23 @@
                         {% if loop.index%3==1 %}
 
                             <li class="item first">
-                                <a href="product_detail.html" title="{{ product.title }}" class="product-image"><img src="{{ asset('bundles/shopbookshop/image/'~product.image) }}" width="135" height="135" alt="{{product.title}}" /></a>
-                                <h2 class="product-name"><a href="product_detail.html" title="{{product.title}}">{{product.title}}</a></h2>
+                                <a href="{{ path('shop_bookshop_product', { 'id': product.id } ) }}" title="{{ product.title }}" class="product-image"><img src="{{ asset('bundles/shopbookshop/image/'~product.image) }}" width="135" height="135" alt="{{product.title}}" /></a>
+                                <h2 class="product-name"><a href="{{ path('shop_bookshop_product', { 'id': product.id } ) }}" title="{{product.title}}">{{product.title}}</a></h2>
                                 <div class="price-box">
                                     <span class="regular-price" id="product-price-168">
-                                        <span class="price">{{product.price}} US$</span>
+                                        <span class="price">{{product.price}} US$</span>
                                     </span>
                                 </div>
 
                                 {% if product.active>0 %}
                                 <div class="actions">
-                                    <button type="button" title="Add to Cart" class="button btn-cart" >
-                                        <span><span>Add to Cart</span></span>
-                                    </button>
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="qty" value="1">
+                                        <input type="hidden" name="productId" value="{{product.id}}">
+                                        <button type="submit" title="Add to Cart" class="button btn-cart" >
+                                            <span><span>Add to Cart</span></span>
+                                        </button>
+                                    </form>
                                 </div>
                                 {% else %} <div class="actions" style='color:red'><span>Not available</span></div>
                                 {% endif %}
@@ -86,19 +90,23 @@
                         {% endif %}
                         {% if loop.index%3==2 %}
                             <li class="item">
-                                <a href="product_detail.html" title="{{ product.title }}" class="product-image"><img src="{{ asset('bundles/shopbookshop/image/'~product.image) }}" width="135" height="135" alt="{{product.title}}" /></a>
-                                <h2 class="product-name"><a href="product_detail.html" title="{{product.title}}">{{product.title}}</a></h2>
+                                <a href="{{ path('shop_bookshop_product', { 'id': product.id } ) }}" title="{{ product.title }}" class="product-image"><img src="{{ asset('bundles/shopbookshop/image/'~product.image) }}" width="135" height="135" alt="{{product.title}}" /></a>
+                                <h2 class="product-name"><a href="{{ path('shop_bookshop_product', { 'id': product.id } ) }}" title="{{product.title}}">{{product.title}}</a></h2>
                                 <div class="price-box">
                                     <span class="regular-price" id="product-price-168">
-                                        <span class="price">{{product.price}} US$</span>
+                                        <span class="price">{{product.price}} US$</span>
                                     </span>
                                 </div>
 
                                 {% if product.active>0 %}
                                 <div class="actions">
-                                    <button type="button" title="Add to Cart" class="button btn-cart" >
-                                        <span><span>Add to Cart</span></span>
-                                    </button>
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="qty" value="1">
+                                        <input type="hidden" name="productId" value="{{product.id}}">
+                                        <button type="submit" title="Add to Cart" class="button btn-cart" >
+                                            <span><span>Add to Cart</span></span>
+                                        </button>
+                                    </form>
                                 </div>
                                 {% else %} <div class="actions" style='color:red'><span>Not available</span></div>    
                                 {% endif %}
@@ -106,18 +114,22 @@
                         {% endif %}
                         {% if loop.index%3==0 %}
                             <li class="item">
-                                <a href="product_detail.html" title="{{ product.title }}" class="product-image"><img src="{{ asset('bundles/shopbookshop/image/'~product.image) }}" width="135" height="135" alt="{{product.title}}" /></a>
-                                <h2 class="product-name"><a href="product_detail.html" title="{{product.title}}">{{product.title}}</a></h2>
+                                <a href="{{ path('shop_bookshop_product', { 'id': product.id } ) }}" title="{{ product.title }}" class="product-image"><img src="{{ asset('bundles/shopbookshop/image/'~product.image) }}" width="135" height="135" alt="{{product.title}}" /></a>
+                                <h2 class="product-name"><a href="{{ path('shop_bookshop_product', { 'id': product.id } ) }}" title="{{product.title}}">{{product.title}}</a></h2>
                                 <div class="price-box">
                                     <span class="regular-price" id="product-price-168">
-                                        <span class="price">{{product.price}} US$</span>
+                                        <span class="price">{{product.price}} US$</span>
                                     </span>
                                 </div>
                                 {% if product.active>0 %}
                                 <div class="actions">
-                                    <button type="button" title="Add to Cart" class="button btn-cart" >
-                                        <span><span>Add to Cart</span></span>
-                                    </button>
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="qty" value="1">
+                                        <input type="hidden" name="productId" value="{{product.id}}">
+                                        <button type="submit" title="Add to Cart" class="button btn-cart" >
+                                            <span><span>Add to Cart</span></span>
+                                        </button>
+                                    </form>
                                 </div>
                                 {% else %} <div class="actions" style='color:red'><span>Not available</span></div>    
                                 {% endif %}    
@@ -152,19 +164,106 @@
                         </div>
                 </div>
             </div>
-                {% block leftSidebar %}{{ parent() }}{% endblock %}
-        </div>
-            
-            <div class="col-right sidebar">
-                <div class="block block-cart">
-                    <div class="block-title">
-                        <strong><span>My Cart</span></strong>
-                    </div>
-                    <div class="block-content">
-                        <p class="empty">You have no items in your shopping cart.</p>
+            {% block leftSidebar %}
+                <div class="col-left sidebar">
+                    <div class="block block-layered-nav">
+                        <div class="block-title">
+                            <strong><span>{{'Shop By'|trans}}</span></strong>
+                        </div>
+                        <div class="block-content">
+                            {% set cid, clabel, search= null, null, null %}
+                            {% if products.params.cid is defined %}{% set cid=products.params.cid %}{% endif %} 
+                            {% if products.params.clabel is defined %}{% set clabel=products.params.clabel %}{% endif %} 
+                            {% if products.params.search is defined %}{% set search=products.params.search %}{% endif %}     
+                            <div class="currently">
+                                {% if products.params.pr is defined or products.params.st is defined %}
+                                <p class="block-subtitle">{{'Currently Shopping by'|trans}}: </p>
+                                {% endif %}
+                                <ol>
+                                    {% if products.params.cat is defined %}
+                                    <li>
+                                        <span class="label">{{'Category'|trans}}:</span> 
+                                        <span class="value">   
+                                        {{ products.params.cat }}
+                                        </span>
+                                        <a class="btn-remove" href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'cat': null}) ) }}" title="Remove This Item">{{'Remove This Item'|trans}}</a>
+                                    </li>
+                                    {% endif %}
+                                    {% if products.params.pr is defined %}
+                                    <li>
+                                        <span class="label">{{'Price'|trans}}:</span> 
+                                        <span class="value">   
+                                        {% if products.params.pr==1%}<span class="price">0,00 US$</span> - <span class="price">19,99 US$</span>{% endif %}
+                                        {% if products.params.pr==2%}<span class="price">20,00 US$</span> - <span class="price">39,99 US$</span>{% endif %}
+                                        {% if products.params.pr==3%}<span class="price">40,00 US$</span>{{' and above'|trans}}{% endif %}
+                                        </span>
+                                        <a class="btn-remove" href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'pr': null}) ) }}" title="Remove This Item">{{'Remove This Item'|trans}}</a>
+                                    </li>
+                                    {% endif %}
+                                    {% if products.params.st is defined %}
+                                    <li>
+                                        <span class="label">{{'Stock'|trans}}:</span> 
+                                        <span class="value"> 
+                                        {% if products.params.st==1 %}{{'Available'|trans}}{% endif %}
+                                        {% if products.params.st==0 %}{{'Soon'|trans}}{% endif %}
+                                        </span>
+                                        <a class="btn-remove" href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'st': null}) ) }}" title="Remove This Item">{{'Remove This Item'|trans}}</a>
+                                    </li>
+                                    {% endif %}
+                                </ol>
+                            </div>
+                            
+                            {% if products.params.pr is defined or products.params.st is defined or products.params.cat is defined %}    
+                                <div class="actions">  
+                                    <a href="{{ path('shop_bookshop_category', {'search':search, 'cid':cid, 'clabel':clabel}) }}">
+                                        {{'Clear All'|trans}}
+                                    </a>
+                                </div>
+                            {% endif %}
+                            <p class="block-subtitle">{{'Shopping Options'|trans}}</p>
+                            <dl id="narrow-by-list">
+                                {% if products.params.search is defined and products.params.cid is not defined %}
+                                <dt>{{'Category'|trans}}</dt>
+                                <dd>
+                                    <ol>
+                                        {% for category in categories %}
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                        ({'cat': category}) ) }}">{{category}}</a></li>   
+                                        {% endfor %}   
+                                    </ol>    
+                                </dd>
+                                {% endif %}
+                                <dt>{{'Price'|trans}}</dt>
+                                
+                                <dd>
+                                    <ol>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'pr': '1'}) ) }}"><span class="price">0,00 US$</span> - <span class="price">19,99 US$</span></a></li>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'pr': '2'}) ) }}"><span class="price">20,00 US$</span> - <span class="price">39,99 US$</span></a></li>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'pr': '3'}) ) }}"><span class="price">40,00 US$ </span>{{'and above'|trans}}</a></li>
+                                    </ol>
+                                </dd>
+                                <dt>{{'Stock'|trans}}</dt>
+                                <dd>
+                                    <ol>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'st': '1'}) ) }}">{{'Available'|trans}}</a></li>
+                                        <li><a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge
+                                            ({'st': '0'}) ) }}">{{'Soon'|trans}}</a></li>
+                                    </ol>            
+                                </dd>
+                            </dl>
+                        </div>
                     </div>
                 </div>
-            </div>    
+            {% endblock %}
+        </div>
+        {% block rightSidebar %}{{ parent() }}{% endblock %} 
     </div>
 </div>
 {% endblock %}
